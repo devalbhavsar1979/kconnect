@@ -1,0 +1,32 @@
+# ============================================================
+# K-CONNECT Backend — Requirements
+# Python 3.12.x | Windows Server 2012 R2 compatible
+# ============================================================
+
+# --- Web Framework ---
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+
+# --- Database ---
+sqlalchemy==2.0.36
+alembic==1.14.0
+# psycopg3 with pre-built binary (no system libpq required on Windows)
+psycopg[binary]==3.2.3
+
+# --- Validation ---
+pydantic==2.10.3
+pydantic-settings==2.6.1
+email-validator==2.2.0
+
+# --- Authentication ---
+# python-jose for JWT encoding/decoding
+python-jose[cryptography]==3.3.0
+# passlib + bcrypt for password hashing
+# bcrypt 4.0.1+ required — restores __about__ compatibility with passlib 1.7.4
+passlib[bcrypt]==1.7.4
+bcrypt==4.0.1
+# Required for multipart/form-data (OAuth forms later)
+python-multipart==0.0.12
+
+# --- Development / Linting ---
+ruff==0.8.4
