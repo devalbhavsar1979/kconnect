@@ -1,0 +1,1270 @@
+{
+  "categories": [
+    {
+      "name": "id",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "name",
+      "source": "VARCHAR(100)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "description",
+      "source": "TEXT",
+      "target": "text",
+      "nullable": true
+    },
+    {
+      "name": "is_active",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "created_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    },
+    {
+      "name": "updated_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    }
+  ],
+  "users": [
+    {
+      "name": "id",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "first_name",
+      "source": "VARCHAR(150)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "last_name",
+      "source": "VARCHAR(150)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "email",
+      "source": "VARCHAR(255)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "mobile_number",
+      "source": "VARCHAR(20)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "password_hash",
+      "source": "VARCHAR(255)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "user_type",
+      "source": "VARCHAR(29)",
+      "target": "enum",
+      "nullable": false
+    },
+    {
+      "name": "profile_status",
+      "source": "VARCHAR(10)",
+      "target": "enum",
+      "nullable": false
+    },
+    {
+      "name": "is_active",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "is_verified",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "date_of_birth",
+      "source": "DATE",
+      "target": "date",
+      "nullable": true
+    },
+    {
+      "name": "cv_file_path",
+      "source": "VARCHAR(512)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "profile_photo_path",
+      "source": "VARCHAR(512)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "title",
+      "source": "VARCHAR(4)",
+      "target": "enum",
+      "nullable": true
+    },
+    {
+      "name": "gender",
+      "source": "VARCHAR(17)",
+      "target": "enum",
+      "nullable": true
+    },
+    {
+      "name": "website",
+      "source": "VARCHAR(100)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "linkedin",
+      "source": "VARCHAR(100)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "company",
+      "source": "VARCHAR(100)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "designation",
+      "source": "VARCHAR(14)",
+      "target": "enum",
+      "nullable": true
+    },
+    {
+      "name": "short_bio",
+      "source": "TEXT",
+      "target": "text",
+      "nullable": true
+    },
+    {
+      "name": "address_flat",
+      "source": "VARCHAR(200)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "address_area",
+      "source": "VARCHAR(200)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "address_city",
+      "source": "VARCHAR(100)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "address_state",
+      "source": "VARCHAR(100)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "address_country",
+      "source": "VARCHAR(100)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "address_pincode",
+      "source": "VARCHAR(10)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "consent",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "created_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    },
+    {
+      "name": "updated_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    }
+  ],
+  "academic_details": [
+    {
+      "name": "id",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "user_id",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "school",
+      "source": "VARCHAR(200)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "degree",
+      "source": "VARCHAR(200)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "field_of_study",
+      "source": "VARCHAR(200)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "end_month",
+      "source": "INTEGER",
+      "target": "integer",
+      "nullable": true
+    },
+    {
+      "name": "end_year",
+      "source": "INTEGER",
+      "target": "integer",
+      "nullable": true
+    },
+    {
+      "name": "grade",
+      "source": "VARCHAR(50)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "description",
+      "source": "TEXT",
+      "target": "text",
+      "nullable": true
+    },
+    {
+      "name": "created_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    },
+    {
+      "name": "updated_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    }
+  ],
+  "achievements": [
+    {
+      "name": "id",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "user_id",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "title",
+      "source": "VARCHAR(200)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "description",
+      "source": "TEXT",
+      "target": "text",
+      "nullable": false
+    },
+    {
+      "name": "file_path",
+      "source": "VARCHAR(500)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "file_name",
+      "source": "VARCHAR(200)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "created_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    },
+    {
+      "name": "updated_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    }
+  ],
+  "experience_entries": [
+    {
+      "name": "id",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "user_id",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "job_title",
+      "source": "VARCHAR(200)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "organization",
+      "source": "VARCHAR(200)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "location",
+      "source": "VARCHAR(200)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "location_type",
+      "source": "VARCHAR(6)",
+      "target": "enum",
+      "nullable": true
+    },
+    {
+      "name": "employment_type",
+      "source": "VARCHAR(14)",
+      "target": "enum",
+      "nullable": true
+    },
+    {
+      "name": "is_current",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "start_month",
+      "source": "INTEGER",
+      "target": "integer",
+      "nullable": false
+    },
+    {
+      "name": "start_year",
+      "source": "INTEGER",
+      "target": "integer",
+      "nullable": false
+    },
+    {
+      "name": "end_month",
+      "source": "INTEGER",
+      "target": "integer",
+      "nullable": true
+    },
+    {
+      "name": "end_year",
+      "source": "INTEGER",
+      "target": "integer",
+      "nullable": true
+    },
+    {
+      "name": "highlights",
+      "source": "TEXT",
+      "target": "text",
+      "nullable": true
+    },
+    {
+      "name": "skills",
+      "source": "ARRAY",
+      "target": "json",
+      "nullable": true
+    },
+    {
+      "name": "created_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    },
+    {
+      "name": "updated_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    }
+  ],
+  "organizations": [
+    {
+      "name": "id",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "organization_name",
+      "source": "VARCHAR(255)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "industry",
+      "source": "VARCHAR(200)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "organization_type",
+      "source": "VARCHAR(100)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "website",
+      "source": "VARCHAR(512)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "email",
+      "source": "VARCHAR(255)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "mobile_number",
+      "source": "VARCHAR(20)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "city",
+      "source": "VARCHAR(100)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "state",
+      "source": "VARCHAR(100)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "country",
+      "source": "VARCHAR(100)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "address",
+      "source": "TEXT",
+      "target": "text",
+      "nullable": true
+    },
+    {
+      "name": "created_by",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "created_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    },
+    {
+      "name": "updated_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    }
+  ],
+  "refresh_tokens": [
+    {
+      "name": "id",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "user_id",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "token_hash",
+      "source": "VARCHAR(64)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "expires_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    },
+    {
+      "name": "revoked",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "created_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    }
+  ],
+  "user_expertise": [
+    {
+      "name": "id",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "user_id",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "total_experience",
+      "source": "VARCHAR(100)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "teaching_experience",
+      "source": "VARCHAR(100)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "corporate_training",
+      "source": "VARCHAR(100)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "online_training",
+      "source": "VARCHAR(100)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "classroom_training",
+      "source": "VARCHAR(100)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "primary_expertise",
+      "source": "VARCHAR(200)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "secondary_expertise",
+      "source": "VARCHAR(200)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "audience_levels",
+      "source": "ARRAY",
+      "target": "json",
+      "nullable": false
+    },
+    {
+      "name": "created_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    },
+    {
+      "name": "updated_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    }
+  ],
+  "user_preferences": [
+    {
+      "name": "id",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "user_id",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "delivery_modes",
+      "source": "ARRAY",
+      "target": "json",
+      "nullable": false
+    },
+    {
+      "name": "geographic_preference",
+      "source": "ARRAY",
+      "target": "json",
+      "nullable": false
+    },
+    {
+      "name": "willing_to_travel",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "max_travel_distance",
+      "source": "VARCHAR(20)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "travel_reimbursement",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "preferred_audience",
+      "source": "ARRAY",
+      "target": "json",
+      "nullable": false
+    },
+    {
+      "name": "services",
+      "source": "ARRAY",
+      "target": "json",
+      "nullable": false
+    },
+    {
+      "name": "training_topics",
+      "source": "ARRAY",
+      "target": "json",
+      "nullable": false
+    },
+    {
+      "name": "created_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    },
+    {
+      "name": "updated_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    }
+  ],
+  "user_service_delivery": [
+    {
+      "name": "id",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "user_id",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "can_take_lecture",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "lecture_classroom",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "lecture_online",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "lecture_offline_recording",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "lecture_blended_flipped",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "lecture_hybrid_hyflex",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "lecture_hands_on_workshop",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "lecture_mentoring",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "can_create_content",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "content_creation",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "content_explainer",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "content_presentation",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "content_course_design",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "content_syllabus_design",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "content_reference_material",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "lang_translation",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "lang_transcription",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "lang_transcript_review",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "lang_proofreading",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "lang_voiceover",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "lang_localization",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "lang_subtitling",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "eval_case_study_creation",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "eval_case_study_review",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "eval_case_study_mentoring",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "eval_assignment_creation",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "eval_assignment_review",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "eval_assignment_mentoring",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "eval_qbank_creation",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "eval_qbank_review",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "eval_qpaper_creation",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "eval_qpaper_review",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "eval_qpaper_grading",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "created_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    },
+    {
+      "name": "updated_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    }
+  ],
+  "opportunities": [
+    {
+      "name": "id",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "title",
+      "source": "VARCHAR(512)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "opportunity_type",
+      "source": "VARCHAR(27)",
+      "target": "enum",
+      "nullable": false
+    },
+    {
+      "name": "category",
+      "source": "VARCHAR(200)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "sub_category",
+      "source": "VARCHAR(200)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "delivery_modes",
+      "source": "ARRAY",
+      "target": "json",
+      "nullable": false
+    },
+    {
+      "name": "number_of_openings",
+      "source": "INTEGER",
+      "target": "integer",
+      "nullable": false
+    },
+    {
+      "name": "session_structure",
+      "source": "VARCHAR(17)",
+      "target": "enum",
+      "nullable": false
+    },
+    {
+      "name": "total_duration",
+      "source": "VARCHAR(100)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "duration_per_session",
+      "source": "VARCHAR(100)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "organization_id",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": true
+    },
+    {
+      "name": "short_description",
+      "source": "VARCHAR(500)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "detailed_description",
+      "source": "TEXT",
+      "target": "text",
+      "nullable": false
+    },
+    {
+      "name": "tags",
+      "source": "ARRAY",
+      "target": "json",
+      "nullable": false
+    },
+    {
+      "name": "event_date",
+      "source": "DATE",
+      "target": "date",
+      "nullable": false
+    },
+    {
+      "name": "start_time",
+      "source": "TIME",
+      "target": "time",
+      "nullable": true
+    },
+    {
+      "name": "end_time",
+      "source": "TIME",
+      "target": "time",
+      "nullable": true
+    },
+    {
+      "name": "venue_name",
+      "source": "VARCHAR(500)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "venue_location_type",
+      "source": "VARCHAR(10)",
+      "target": "enum",
+      "nullable": true
+    },
+    {
+      "name": "venue_address",
+      "source": "TEXT",
+      "target": "text",
+      "nullable": true
+    },
+    {
+      "name": "target_audience",
+      "source": "ARRAY",
+      "target": "json",
+      "nullable": false
+    },
+    {
+      "name": "skills_required",
+      "source": "ARRAY",
+      "target": "json",
+      "nullable": false
+    },
+    {
+      "name": "minimum_experience",
+      "source": "VARCHAR(100)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "expertise_level",
+      "source": "VARCHAR(11)",
+      "target": "enum",
+      "nullable": true
+    },
+    {
+      "name": "additional_requirements",
+      "source": "TEXT",
+      "target": "text",
+      "nullable": true
+    },
+    {
+      "name": "language_of_delivery",
+      "source": "VARCHAR(100)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "preferred_location",
+      "source": "VARCHAR(200)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "gender_preference",
+      "source": "VARCHAR(50)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "candidate_preference",
+      "source": "TEXT",
+      "target": "text",
+      "nullable": true
+    },
+    {
+      "name": "notes_for_applicants",
+      "source": "TEXT",
+      "target": "text",
+      "nullable": true
+    },
+    {
+      "name": "application_deadline",
+      "source": "DATE",
+      "target": "date",
+      "nullable": true
+    },
+    {
+      "name": "compensation_type",
+      "source": "VARCHAR(10)",
+      "target": "enum",
+      "nullable": false
+    },
+    {
+      "name": "fee_structure",
+      "source": "VARCHAR(11)",
+      "target": "enum",
+      "nullable": true
+    },
+    {
+      "name": "fee_amount",
+      "source": "NUMERIC(12, 2)",
+      "target": "decimal",
+      "nullable": true
+    },
+    {
+      "name": "payment_terms",
+      "source": "VARCHAR(200)",
+      "target": "string",
+      "nullable": true
+    },
+    {
+      "name": "travel_required",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "travel_reimbursement",
+      "source": "BOOLEAN",
+      "target": "boolean",
+      "nullable": false
+    },
+    {
+      "name": "other_benefits",
+      "source": "TEXT",
+      "target": "text",
+      "nullable": true
+    },
+    {
+      "name": "visibility",
+      "source": "VARCHAR(16)",
+      "target": "enum",
+      "nullable": false
+    },
+    {
+      "name": "status",
+      "source": "VARCHAR(9)",
+      "target": "enum",
+      "nullable": false
+    },
+    {
+      "name": "created_by",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "created_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    },
+    {
+      "name": "updated_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    }
+  ],
+  "applications": [
+    {
+      "name": "id",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "opportunity_id",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "applicant_id",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "status",
+      "source": "VARCHAR(12)",
+      "target": "enum",
+      "nullable": false
+    },
+    {
+      "name": "cover_note",
+      "source": "TEXT",
+      "target": "text",
+      "nullable": true
+    },
+    {
+      "name": "applied_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    },
+    {
+      "name": "updated_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    }
+  ],
+  "opportunity_attachments": [
+    {
+      "name": "id",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "opportunity_id",
+      "source": "UUID",
+      "target": "uuid",
+      "nullable": false
+    },
+    {
+      "name": "file_name",
+      "source": "VARCHAR(300)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "file_path",
+      "source": "VARCHAR(1024)",
+      "target": "string",
+      "nullable": false
+    },
+    {
+      "name": "file_size_bytes",
+      "source": "INTEGER",
+      "target": "integer",
+      "nullable": false
+    },
+    {
+      "name": "uploaded_at",
+      "source": "DATETIME",
+      "target": "dateTime",
+      "nullable": false
+    }
+  ]
+}

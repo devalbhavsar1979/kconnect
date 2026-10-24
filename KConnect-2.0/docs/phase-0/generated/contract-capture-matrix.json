@@ -1,0 +1,1880 @@
+[
+  {
+    "id": "GET /api/v1/admin/categories",
+    "source": "backend/app/api/v1/admin/categories.py:17",
+    "request_parameters": [
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "list[CategoryResponse]",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "POST /api/v1/admin/categories",
+    "source": "backend/app/api/v1/admin/categories.py:25",
+    "request_parameters": [
+      {
+        "name": "data",
+        "annotation": "CategoryCreate",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "CategoryResponse",
+    "success_status_expression": "status.HTTP_201_CREATED",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "DELETE /api/v1/admin/categories/{cat_id}",
+    "source": "backend/app/api/v1/admin/categories.py:62",
+    "request_parameters": [
+      {
+        "name": "cat_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": null,
+    "success_status_expression": "status.HTTP_204_NO_CONTENT",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "PUT /api/v1/admin/categories/{cat_id}",
+    "source": "backend/app/api/v1/admin/categories.py:41",
+    "request_parameters": [
+      {
+        "name": "cat_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "data",
+        "annotation": "CategoryUpdate",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "CategoryResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "GET /api/v1/admin/dashboard",
+    "source": "backend/app/api/v1/admin/dashboard.py:17",
+    "request_parameters": [
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "DashboardStats",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "GET /api/v1/admin/opportunities",
+    "source": "backend/app/api/v1/admin/opportunities.py:47",
+    "request_parameters": [
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      },
+      {
+        "name": "page",
+        "annotation": "int",
+        "default": "Query(1, ge=1)"
+      },
+      {
+        "name": "size",
+        "annotation": "int",
+        "default": "Query(20, ge=1, le=100)"
+      },
+      {
+        "name": "status",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "opportunity_type",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "search",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      }
+    ],
+    "expected_schema": "PaginatedResponse[OpportunityListItem]",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "POST /api/v1/admin/opportunities",
+    "source": "backend/app/api/v1/admin/opportunities.py:109",
+    "request_parameters": [
+      {
+        "name": "body",
+        "annotation": "OpportunityCreateRequest",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "OpportunityResponse",
+    "success_status_expression": "201",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "DELETE /api/v1/admin/opportunities/{opp_id}",
+    "source": "backend/app/api/v1/admin/opportunities.py:194",
+    "request_parameters": [
+      {
+        "name": "opp_id",
+        "annotation": "uuid.UUID",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": null,
+    "success_status_expression": "204",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "GET /api/v1/admin/opportunities/{opp_id}",
+    "source": "backend/app/api/v1/admin/opportunities.py:126",
+    "request_parameters": [
+      {
+        "name": "opp_id",
+        "annotation": "uuid.UUID",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "OpportunityResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "PUT /api/v1/admin/opportunities/{opp_id}",
+    "source": "backend/app/api/v1/admin/opportunities.py:137",
+    "request_parameters": [
+      {
+        "name": "opp_id",
+        "annotation": "uuid.UUID",
+        "default": null
+      },
+      {
+        "name": "body",
+        "annotation": "OpportunityUpdateRequest",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "OpportunityResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "POST /api/v1/admin/opportunities/{opp_id}/archive",
+    "source": "backend/app/api/v1/admin/opportunities.py:179",
+    "request_parameters": [
+      {
+        "name": "opp_id",
+        "annotation": "uuid.UUID",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "OpportunityResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "POST /api/v1/admin/opportunities/{opp_id}/attachments",
+    "source": "backend/app/api/v1/admin/opportunities.py:217",
+    "request_parameters": [
+      {
+        "name": "opp_id",
+        "annotation": "uuid.UUID",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      },
+      {
+        "name": "file",
+        "annotation": "UploadFile",
+        "default": "File(...)"
+      }
+    ],
+    "expected_schema": "AttachmentResponse",
+    "success_status_expression": "201",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "DELETE /api/v1/admin/opportunities/{opp_id}/attachments/{attachment_id}",
+    "source": "backend/app/api/v1/admin/opportunities.py:268",
+    "request_parameters": [
+      {
+        "name": "opp_id",
+        "annotation": "uuid.UUID",
+        "default": null
+      },
+      {
+        "name": "attachment_id",
+        "annotation": "uuid.UUID",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": null,
+    "success_status_expression": "204",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "POST /api/v1/admin/opportunities/{opp_id}/publish",
+    "source": "backend/app/api/v1/admin/opportunities.py:155",
+    "request_parameters": [
+      {
+        "name": "opp_id",
+        "annotation": "uuid.UUID",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "OpportunityResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "GET /api/v1/admin/organisations",
+    "source": "backend/app/api/v1/admin/organisations.py:44",
+    "request_parameters": [
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      },
+      {
+        "name": "page",
+        "annotation": "int",
+        "default": "Query(1, ge=1)"
+      },
+      {
+        "name": "size",
+        "annotation": "int",
+        "default": "Query(20, ge=1, le=200)"
+      },
+      {
+        "name": "search",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "industry",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      }
+    ],
+    "expected_schema": "PaginatedResponse[AdminOrgResponse]",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "POST /api/v1/admin/organisations",
+    "source": "backend/app/api/v1/admin/organisations.py:84",
+    "request_parameters": [
+      {
+        "name": "body",
+        "annotation": "AdminOrgCreateRequest",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "AdminOrgResponse",
+    "success_status_expression": "201",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "DELETE /api/v1/admin/organisations/{org_id}",
+    "source": "backend/app/api/v1/admin/organisations.py:128",
+    "request_parameters": [
+      {
+        "name": "org_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": null,
+    "success_status_expression": "204",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "GET /api/v1/admin/organisations/{org_id}",
+    "source": "backend/app/api/v1/admin/organisations.py:99",
+    "request_parameters": [
+      {
+        "name": "org_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "AdminOrgResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "PUT /api/v1/admin/organisations/{org_id}",
+    "source": "backend/app/api/v1/admin/organisations.py:111",
+    "request_parameters": [
+      {
+        "name": "org_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "body",
+        "annotation": "AdminOrgUpdateRequest",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "AdminOrgResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "GET /api/v1/admin/users",
+    "source": "backend/app/api/v1/admin/users.py:17",
+    "request_parameters": [
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      },
+      {
+        "name": "page",
+        "annotation": "int",
+        "default": "Query(1, ge=1)"
+      },
+      {
+        "name": "size",
+        "annotation": "int",
+        "default": "Query(20, ge=1, le=100)"
+      },
+      {
+        "name": "search",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "user_type",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "is_active",
+        "annotation": "Optional[bool]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "is_verified",
+        "annotation": "Optional[bool]",
+        "default": "Query(None)"
+      }
+    ],
+    "expected_schema": "PaginatedResponse[AdminUserResponse]",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "GET /api/v1/admin/users/{user_id}",
+    "source": "backend/app/api/v1/admin/users.py:50",
+    "request_parameters": [
+      {
+        "name": "user_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "AdminUserResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "PATCH /api/v1/admin/users/{user_id}",
+    "source": "backend/app/api/v1/admin/users.py:62",
+    "request_parameters": [
+      {
+        "name": "user_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "data",
+        "annotation": "AdminUserUpdate",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "AdminUserResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "GET /api/v1/applications/",
+    "source": "backend/app/api/v1/applications.py:12",
+    "request_parameters": [
+      {
+        "name": "_current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      }
+    ],
+    "expected_schema": null,
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "POST /api/v1/applications/",
+    "source": "backend/app/api/v1/applications.py:20",
+    "request_parameters": [
+      {
+        "name": "_current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      }
+    ],
+    "expected_schema": null,
+    "success_status_expression": "201",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "POST /api/v1/auth/login",
+    "source": "backend/app/api/v1/auth.py:92",
+    "request_parameters": [
+      {
+        "name": "data",
+        "annotation": "LoginRequest",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "TokenResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "public-contract",
+      "abuse-and-input-validation"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "POST /api/v1/auth/logout",
+    "source": "backend/app/api/v1/auth.py:108",
+    "request_parameters": [
+      {
+        "name": "data",
+        "annotation": "RefreshRequest",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": null,
+    "success_status_expression": "status.HTTP_204_NO_CONTENT",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "public-contract",
+      "abuse-and-input-validation"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "GET /api/v1/auth/me",
+    "source": "backend/app/api/v1/auth.py:116",
+    "request_parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "UserResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "POST /api/v1/auth/refresh",
+    "source": "backend/app/api/v1/auth.py:100",
+    "request_parameters": [
+      {
+        "name": "data",
+        "annotation": "RefreshRequest",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "AccessTokenResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "public-contract",
+      "abuse-and-input-validation"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "POST /api/v1/auth/register",
+    "source": "backend/app/api/v1/auth.py:27",
+    "request_parameters": [
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      },
+      {
+        "name": "first_name",
+        "annotation": "Annotated[str, Form()]",
+        "default": null
+      },
+      {
+        "name": "last_name",
+        "annotation": "Annotated[str, Form()]",
+        "default": null
+      },
+      {
+        "name": "email",
+        "annotation": "Annotated[str, Form()]",
+        "default": null
+      },
+      {
+        "name": "password",
+        "annotation": "Annotated[str, Form()]",
+        "default": null
+      },
+      {
+        "name": "confirm_password",
+        "annotation": "Annotated[str, Form()]",
+        "default": null
+      },
+      {
+        "name": "mobile_number",
+        "annotation": "Annotated[str | None, Form()]",
+        "default": "None"
+      },
+      {
+        "name": "user_type",
+        "annotation": "Annotated[UserType, Form()]",
+        "default": "UserType.FREELANCER"
+      },
+      {
+        "name": "date_of_birth",
+        "annotation": "Annotated[str | None, Form()]",
+        "default": "None"
+      },
+      {
+        "name": "cv",
+        "annotation": "Annotated[UploadFile | None, File()]",
+        "default": "None"
+      }
+    ],
+    "expected_schema": "TokenResponse",
+    "success_status_expression": "status.HTTP_201_CREATED",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "public-contract",
+      "abuse-and-input-validation"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "GET /api/v1/dashboard/",
+    "source": "backend/app/api/v1/dashboard.py:12",
+    "request_parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      }
+    ],
+    "expected_schema": null,
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "GET /api/v1/opportunities",
+    "source": "backend/app/api/v1/opportunities.py:45",
+    "request_parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      },
+      {
+        "name": "page",
+        "annotation": "int",
+        "default": "Query(1, ge=1)"
+      },
+      {
+        "name": "size",
+        "annotation": "int",
+        "default": "Query(12, ge=1, le=50)"
+      },
+      {
+        "name": "search",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "opportunity_type",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "delivery_mode",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "expertise_level",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "state",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "category",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "date_filter",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "duration_keyword",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "sort_by",
+        "annotation": "str",
+        "default": "Query('newest')"
+      },
+      {
+        "name": "tab",
+        "annotation": "str",
+        "default": "Query('all')"
+      }
+    ],
+    "expected_schema": "PaginatedOpportunityListings",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "GET /api/v1/opportunities/{opportunity_id}",
+    "source": "backend/app/api/v1/opportunities.py:148",
+    "request_parameters": [
+      {
+        "name": "opportunity_id",
+        "annotation": "uuid.UUID",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "OpportunityListingCard",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "GET /api/v1/organizations/",
+    "source": "backend/app/api/v1/organizations.py:12",
+    "request_parameters": [
+      {
+        "name": "_current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      }
+    ],
+    "expected_schema": null,
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "POST /api/v1/organizations/",
+    "source": "backend/app/api/v1/organizations.py:19",
+    "request_parameters": [
+      {
+        "name": "_current_user",
+        "annotation": "Annotated[User, Depends(require_user_type(UserType.VENDOR, UserType.ADMIN))]",
+        "default": null
+      }
+    ],
+    "expected_schema": null,
+    "success_status_expression": "201",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "GET /api/v1/users/",
+    "source": "backend/app/api/v1/users.py:51",
+    "request_parameters": [
+      {
+        "name": "_admin",
+        "annotation": "Annotated[User, Depends(require_user_type(UserType.ADMIN))]",
+        "default": null
+      }
+    ],
+    "expected_schema": "list[UserResponse]",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "GET /api/v1/users/me",
+    "source": "backend/app/api/v1/users.py:44",
+    "request_parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "UserResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "GET /api/v1/users/me/academic",
+    "source": "backend/app/api/v1/academic.py:17",
+    "request_parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "list[AcademicDetailResponse]",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "POST /api/v1/users/me/academic",
+    "source": "backend/app/api/v1/academic.py:30",
+    "request_parameters": [
+      {
+        "name": "data",
+        "annotation": "AcademicDetailCreate",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "AcademicDetailResponse",
+    "success_status_expression": "status.HTTP_201_CREATED",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "DELETE /api/v1/users/me/academic/{entry_id}",
+    "source": "backend/app/api/v1/academic.py:64",
+    "request_parameters": [
+      {
+        "name": "entry_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": null,
+    "success_status_expression": "status.HTTP_204_NO_CONTENT",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "PUT /api/v1/users/me/academic/{entry_id}",
+    "source": "backend/app/api/v1/academic.py:43",
+    "request_parameters": [
+      {
+        "name": "entry_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "data",
+        "annotation": "AcademicDetailUpdate",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "AcademicDetailResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "GET /api/v1/users/me/achievements",
+    "source": "backend/app/api/v1/achievements.py:60",
+    "request_parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "list[AchievementResponse]",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "POST /api/v1/users/me/achievements",
+    "source": "backend/app/api/v1/achievements.py:73",
+    "request_parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      },
+      {
+        "name": "title",
+        "annotation": "str",
+        "default": "Form(...)"
+      },
+      {
+        "name": "description",
+        "annotation": "str",
+        "default": "Form(...)"
+      },
+      {
+        "name": "file",
+        "annotation": "Optional[UploadFile]",
+        "default": "File(None)"
+      }
+    ],
+    "expected_schema": "AchievementResponse",
+    "success_status_expression": "status.HTTP_201_CREATED",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "DELETE /api/v1/users/me/achievements/{entry_id}",
+    "source": "backend/app/api/v1/achievements.py:144",
+    "request_parameters": [
+      {
+        "name": "entry_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": null,
+    "success_status_expression": "status.HTTP_204_NO_CONTENT",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "PUT /api/v1/users/me/achievements/{entry_id}",
+    "source": "backend/app/api/v1/achievements.py:105",
+    "request_parameters": [
+      {
+        "name": "entry_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      },
+      {
+        "name": "title",
+        "annotation": "Optional[str]",
+        "default": "Form(None)"
+      },
+      {
+        "name": "description",
+        "annotation": "Optional[str]",
+        "default": "Form(None)"
+      },
+      {
+        "name": "file",
+        "annotation": "Optional[UploadFile]",
+        "default": "File(None)"
+      },
+      {
+        "name": "clear_file",
+        "annotation": "Optional[str]",
+        "default": "Form(None)"
+      }
+    ],
+    "expected_schema": "AchievementResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "GET /api/v1/users/me/completion",
+    "source": "backend/app/api/v1/users.py:111",
+    "request_parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "ProfileCompletionResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "GET /api/v1/users/me/experience",
+    "source": "backend/app/api/v1/experience.py:22",
+    "request_parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "list[ExperienceEntryResponse]",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "POST /api/v1/users/me/experience",
+    "source": "backend/app/api/v1/experience.py:39",
+    "request_parameters": [
+      {
+        "name": "data",
+        "annotation": "ExperienceEntryCreate",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "ExperienceEntryResponse",
+    "success_status_expression": "status.HTTP_201_CREATED",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "DELETE /api/v1/users/me/experience/{entry_id}",
+    "source": "backend/app/api/v1/experience.py:72",
+    "request_parameters": [
+      {
+        "name": "entry_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": null,
+    "success_status_expression": "status.HTTP_204_NO_CONTENT",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "PUT /api/v1/users/me/experience/{entry_id}",
+    "source": "backend/app/api/v1/experience.py:52",
+    "request_parameters": [
+      {
+        "name": "entry_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "data",
+        "annotation": "ExperienceEntryUpdate",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "ExperienceEntryResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "GET /api/v1/users/me/expertise",
+    "source": "backend/app/api/v1/expertise.py:17",
+    "request_parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "UserExpertiseResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "PUT /api/v1/users/me/expertise",
+    "source": "backend/app/api/v1/expertise.py:28",
+    "request_parameters": [
+      {
+        "name": "data",
+        "annotation": "UserExpertisePayload",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "UserExpertiseResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "GET /api/v1/users/me/preferences",
+    "source": "backend/app/api/v1/preferences.py:17",
+    "request_parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "UserPreferencesResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "PUT /api/v1/users/me/preferences",
+    "source": "backend/app/api/v1/preferences.py:28",
+    "request_parameters": [
+      {
+        "name": "data",
+        "annotation": "UserPreferencesPayload",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "UserPreferencesResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "GET /api/v1/users/me/profile",
+    "source": "backend/app/api/v1/users.py:60",
+    "request_parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "UserResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "PUT /api/v1/users/me/profile",
+    "source": "backend/app/api/v1/users.py:67",
+    "request_parameters": [
+      {
+        "name": "data",
+        "annotation": "UserProfileUpdateRequest",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "UserResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "POST /api/v1/users/me/profile/photo",
+    "source": "backend/app/api/v1/users.py:80",
+    "request_parameters": [
+      {
+        "name": "photo",
+        "annotation": "Annotated[UploadFile, File()]",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "UserResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "GET /api/v1/users/me/service-delivery",
+    "source": "backend/app/api/v1/service_delivery.py:61",
+    "request_parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "UserServiceDeliveryResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "PUT /api/v1/users/me/service-delivery",
+    "source": "backend/app/api/v1/service_delivery.py:76",
+    "request_parameters": [
+      {
+        "name": "data",
+        "annotation": "UserServiceDeliveryPayload",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "expected_schema": "UserServiceDeliveryResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "missing-or-invalid-token",
+      "role-and-ownership"
+    ],
+    "observed_response": null
+  },
+  {
+    "id": "GET /health",
+    "source": "backend/app/main.py:62",
+    "request_parameters": [],
+    "expected_schema": "HealthResponse",
+    "success_status_expression": "200",
+    "capture_status": "pending-runtime",
+    "required_cases": [
+      "success-or-preserved-placeholder",
+      "validation-boundaries",
+      "public-contract",
+      "abuse-and-input-validation"
+    ],
+    "observed_response": null
+  }
+]

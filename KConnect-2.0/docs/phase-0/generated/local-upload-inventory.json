@@ -1,0 +1,55 @@
+{
+  "scope": "Local checkout only; no production DB-to-file reconciliation. Filenames intentionally redacted.",
+  "roots": [
+    {
+      "root": "backend/uploads",
+      "files": [
+        {
+          "path_sha256": "54e2329f48c5a09b390c631a427c119105363d5e61b08999d7c267d5d9b38873",
+          "extension": ".pdf",
+          "bytes": 100557,
+          "sha256": "d093ca5cbf63b20fcc0a325a7a234050e51e894ebd14e239cde0f4c8dc9369d0"
+        },
+        {
+          "path_sha256": "43eb5c13f1ce86dc3a1123f750348b8e62adc2a6c0d9303479e68cc7ebbe70ae",
+          "extension": ".jpg",
+          "bytes": 107872,
+          "sha256": "56ee1d37599c6131e42932871500814fa64e2dfd82a2e75286c4443e90a9e983"
+        },
+        {
+          "path_sha256": "b6025388cb0b5521fd2d2143b992cc4c8770f0b9e1a7a1160dd201a23084f20f",
+          "extension": ".jpg",
+          "bytes": 7300,
+          "sha256": "f1d6deaa290f1eeaece476eaae3c5bf954110ecd842842058bf8c9287a70d4bb"
+        },
+        {
+          "path_sha256": "dd3a4a6089437f8f6997f3c36011bbe59dbe5773b9b59503adfad7808178038e",
+          "extension": ".jpg",
+          "bytes": 82517,
+          "sha256": "5521fe343b0bdfa50730d66e818fae6fa2526c0e9e245d1ce1e91060d25ce4cb"
+        },
+        {
+          "path_sha256": "55f3da6ee5944bf852cb59267943a0b44fb7227c1cad12396f8f590e9fa1856a",
+          "extension": ".png",
+          "bytes": 299406,
+          "sha256": "fa1ac221b107a40e44675d5fe800741a6912af60f6c3394f63ad805251cae9ee"
+        }
+      ],
+      "count": 5,
+      "total_bytes": 597652
+    },
+    {
+      "root": "uploads",
+      "files": [
+        {
+          "path_sha256": "5daf3cb13c9b62a883025f411d0fbb3b282ae3c67abd0fd66a94b1435c7efb9b",
+          "extension": ".docx",
+          "bytes": 686138,
+          "sha256": "d136be99e5d6e681eeba7dadf55d3c2223db75a60137879c14ca12ec62cd98f9"
+        }
+      ],
+      "count": 1,
+      "total_bytes": 686138
+    }
+  ]
+}

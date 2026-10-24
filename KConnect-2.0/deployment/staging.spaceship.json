@@ -1,0 +1,6 @@
+{
+  "environment": "staging",
+  "base_url": "https://app.kconnect.in",
+  "private_root": "/home/nljgfkqgux/kconnect-staging-private",
+  "public_root": "/home/nljgfkqgux/app.kconnect.in"
+}

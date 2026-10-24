@@ -1,0 +1,3033 @@
+[
+  {
+    "class": "AcademicDetailCreate",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/academic.py:8",
+    "table": null,
+    "fields": [
+      {
+        "name": "school",
+        "annotation": "str",
+        "value": "Field(..., min_length=1, max_length=200)"
+      },
+      {
+        "name": "degree",
+        "annotation": "str",
+        "value": "Field(..., min_length=1, max_length=200)"
+      },
+      {
+        "name": "field_of_study",
+        "annotation": "Optional[str]",
+        "value": "Field(None, max_length=200)"
+      },
+      {
+        "name": "end_month",
+        "annotation": "Optional[int]",
+        "value": "Field(None, ge=1, le=12)"
+      },
+      {
+        "name": "end_year",
+        "annotation": "Optional[int]",
+        "value": "Field(None, ge=1950)"
+      },
+      {
+        "name": "grade",
+        "annotation": "Optional[str]",
+        "value": "Field(None, max_length=50)"
+      },
+      {
+        "name": "description",
+        "annotation": "Optional[str]",
+        "value": "None"
+      }
+    ],
+    "methods": [
+      "def non_blank(cls, v: str) -> str:\n        if not v.strip():\n            raise ValueError(\"This field cannot be blank\")\n        return v.strip()",
+      "def year_not_future(cls, v: Optional[int]) -> Optional[int]:\n        if v and v > date.today().year:\n            raise ValueError(\"End year cannot be in the future\")\n        return v"
+    ]
+  },
+  {
+    "class": "AcademicDetailUpdate",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/academic.py:33",
+    "table": null,
+    "fields": [
+      {
+        "name": "school",
+        "annotation": "Optional[str]",
+        "value": "Field(None, min_length=1, max_length=200)"
+      },
+      {
+        "name": "degree",
+        "annotation": "Optional[str]",
+        "value": "Field(None, min_length=1, max_length=200)"
+      },
+      {
+        "name": "field_of_study",
+        "annotation": "Optional[str]",
+        "value": "Field(None, max_length=200)"
+      },
+      {
+        "name": "end_month",
+        "annotation": "Optional[int]",
+        "value": "Field(None, ge=1, le=12)"
+      },
+      {
+        "name": "end_year",
+        "annotation": "Optional[int]",
+        "value": "Field(None, ge=1950)"
+      },
+      {
+        "name": "grade",
+        "annotation": "Optional[str]",
+        "value": "Field(None, max_length=50)"
+      },
+      {
+        "name": "description",
+        "annotation": "Optional[str]",
+        "value": "None"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "AcademicDetailResponse",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/academic.py:43",
+    "table": null,
+    "fields": [
+      {
+        "name": "id",
+        "annotation": "UUID",
+        "value": null
+      },
+      {
+        "name": "user_id",
+        "annotation": "UUID",
+        "value": null
+      },
+      {
+        "name": "school",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "degree",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "field_of_study",
+        "annotation": "Optional[str]",
+        "value": null
+      },
+      {
+        "name": "end_month",
+        "annotation": "Optional[int]",
+        "value": null
+      },
+      {
+        "name": "end_year",
+        "annotation": "Optional[int]",
+        "value": null
+      },
+      {
+        "name": "grade",
+        "annotation": "Optional[str]",
+        "value": null
+      },
+      {
+        "name": "description",
+        "annotation": "Optional[str]",
+        "value": null
+      },
+      {
+        "name": "created_at",
+        "annotation": "datetime",
+        "value": null
+      },
+      {
+        "name": "updated_at",
+        "annotation": "datetime",
+        "value": null
+      },
+      {
+        "name": "model_config",
+        "annotation": null,
+        "value": "ConfigDict(from_attributes=True)"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "AchievementResponse",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/achievement.py:8",
+    "table": null,
+    "fields": [
+      {
+        "name": "id",
+        "annotation": "UUID",
+        "value": null
+      },
+      {
+        "name": "user_id",
+        "annotation": "UUID",
+        "value": null
+      },
+      {
+        "name": "title",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "description",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "file_path",
+        "annotation": "Optional[str]",
+        "value": null
+      },
+      {
+        "name": "file_name",
+        "annotation": "Optional[str]",
+        "value": null
+      },
+      {
+        "name": "created_at",
+        "annotation": "datetime",
+        "value": null
+      },
+      {
+        "name": "updated_at",
+        "annotation": "datetime",
+        "value": null
+      },
+      {
+        "name": "model_config",
+        "annotation": null,
+        "value": "ConfigDict(from_attributes=True)"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "CategoryCreate",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/admin/categories.py:8",
+    "table": null,
+    "fields": [
+      {
+        "name": "name",
+        "annotation": "str",
+        "value": "Field(..., min_length=1, max_length=100)"
+      },
+      {
+        "name": "description",
+        "annotation": "Optional[str]",
+        "value": "None"
+      },
+      {
+        "name": "is_active",
+        "annotation": "bool",
+        "value": "True"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "CategoryUpdate",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/admin/categories.py:14",
+    "table": null,
+    "fields": [
+      {
+        "name": "name",
+        "annotation": "Optional[str]",
+        "value": "Field(None, min_length=1, max_length=100)"
+      },
+      {
+        "name": "description",
+        "annotation": "Optional[str]",
+        "value": "None"
+      },
+      {
+        "name": "is_active",
+        "annotation": "Optional[bool]",
+        "value": "None"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "CategoryResponse",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/admin/categories.py:20",
+    "table": null,
+    "fields": [
+      {
+        "name": "id",
+        "annotation": "UUID",
+        "value": null
+      },
+      {
+        "name": "name",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "description",
+        "annotation": "Optional[str]",
+        "value": null
+      },
+      {
+        "name": "is_active",
+        "annotation": "bool",
+        "value": null
+      },
+      {
+        "name": "created_at",
+        "annotation": "datetime",
+        "value": null
+      },
+      {
+        "name": "updated_at",
+        "annotation": "datetime",
+        "value": null
+      },
+      {
+        "name": "model_config",
+        "annotation": null,
+        "value": "ConfigDict(from_attributes=True)"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "DashboardStats",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/admin/dashboard.py:4",
+    "table": null,
+    "fields": [
+      {
+        "name": "total_users",
+        "annotation": "int",
+        "value": null
+      },
+      {
+        "name": "active_users",
+        "annotation": "int",
+        "value": null
+      },
+      {
+        "name": "total_opportunities",
+        "annotation": "int",
+        "value": null
+      },
+      {
+        "name": "open_opportunities",
+        "annotation": "int",
+        "value": null
+      },
+      {
+        "name": "total_applications",
+        "annotation": "int",
+        "value": null
+      },
+      {
+        "name": "pending_verifications",
+        "annotation": "int",
+        "value": null
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "AdminOrgCreateRequest",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/admin/organisations.py:8",
+    "table": null,
+    "fields": [
+      {
+        "name": "organization_name",
+        "annotation": "str",
+        "value": "Field(..., max_length=255)"
+      },
+      {
+        "name": "industry",
+        "annotation": "str",
+        "value": "Field(..., max_length=200)"
+      },
+      {
+        "name": "organization_type",
+        "annotation": "str",
+        "value": "Field(..., max_length=100)"
+      },
+      {
+        "name": "website",
+        "annotation": "Optional[str]",
+        "value": "Field(None, max_length=512)"
+      },
+      {
+        "name": "email",
+        "annotation": "Optional[str]",
+        "value": "Field(None, max_length=255)"
+      },
+      {
+        "name": "mobile_number",
+        "annotation": "Optional[str]",
+        "value": "Field(None, max_length=20)"
+      },
+      {
+        "name": "city",
+        "annotation": "Optional[str]",
+        "value": "Field(None, max_length=100)"
+      },
+      {
+        "name": "state",
+        "annotation": "Optional[str]",
+        "value": "Field(None, max_length=100)"
+      },
+      {
+        "name": "country",
+        "annotation": "Optional[str]",
+        "value": "Field(None, max_length=100)"
+      },
+      {
+        "name": "address",
+        "annotation": "Optional[str]",
+        "value": "None"
+      }
+    ],
+    "methods": [
+      "def name_not_blank(cls, v: str) -> str:\n        v = v.strip()\n        if not v:\n            raise ValueError('Organisation name cannot be blank')\n        return v",
+      "def website_url(cls, v: Optional[str]) -> Optional[str]:\n        if v:\n            v = v.strip()\n            if v and not (v.startswith('http://') or v.startswith('https://')):\n                raise ValueError('Website must start with http:// or https://')\n        return v or None"
+    ]
+  },
+  {
+    "class": "AdminOrgUpdateRequest",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/admin/organisations.py:38",
+    "table": null,
+    "fields": [
+      {
+        "name": "organization_name",
+        "annotation": "Optional[str]",
+        "value": "Field(None, max_length=255)"
+      },
+      {
+        "name": "industry",
+        "annotation": "Optional[str]",
+        "value": "Field(None, max_length=200)"
+      },
+      {
+        "name": "organization_type",
+        "annotation": "Optional[str]",
+        "value": "Field(None, max_length=100)"
+      },
+      {
+        "name": "website",
+        "annotation": "Optional[str]",
+        "value": "Field(None, max_length=512)"
+      },
+      {
+        "name": "email",
+        "annotation": "Optional[str]",
+        "value": "Field(None, max_length=255)"
+      },
+      {
+        "name": "mobile_number",
+        "annotation": "Optional[str]",
+        "value": "Field(None, max_length=20)"
+      },
+      {
+        "name": "city",
+        "annotation": "Optional[str]",
+        "value": "Field(None, max_length=100)"
+      },
+      {
+        "name": "state",
+        "annotation": "Optional[str]",
+        "value": "Field(None, max_length=100)"
+      },
+      {
+        "name": "country",
+        "annotation": "Optional[str]",
+        "value": "Field(None, max_length=100)"
+      },
+      {
+        "name": "address",
+        "annotation": "Optional[str]",
+        "value": "None"
+      }
+    ],
+    "methods": [
+      "def website_url(cls, v: Optional[str]) -> Optional[str]:\n        if v:\n            v = v.strip()\n            if v and not (v.startswith('http://') or v.startswith('https://')):\n                raise ValueError('Website must start with http:// or https://')\n        return v or None"
+    ]
+  },
+  {
+    "class": "AdminOrgResponse",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/admin/organisations.py:60",
+    "table": null,
+    "fields": [
+      {
+        "name": "id",
+        "annotation": "UUID",
+        "value": null
+      },
+      {
+        "name": "organization_name",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "industry",
+        "annotation": "Optional[str]",
+        "value": null
+      },
+      {
+        "name": "organization_type",
+        "annotation": "Optional[str]",
+        "value": null
+      },
+      {
+        "name": "website",
+        "annotation": "Optional[str]",
+        "value": null
+      },
+      {
+        "name": "email",
+        "annotation": "Optional[str]",
+        "value": null
+      },
+      {
+        "name": "mobile_number",
+        "annotation": "Optional[str]",
+        "value": null
+      },
+      {
+        "name": "city",
+        "annotation": "Optional[str]",
+        "value": null
+      },
+      {
+        "name": "state",
+        "annotation": "Optional[str]",
+        "value": null
+      },
+      {
+        "name": "country",
+        "annotation": "Optional[str]",
+        "value": null
+      },
+      {
+        "name": "address",
+        "annotation": "Optional[str]",
+        "value": null
+      },
+      {
+        "name": "created_by",
+        "annotation": "UUID",
+        "value": null
+      },
+      {
+        "name": "created_at",
+        "annotation": "datetime",
+        "value": null
+      },
+      {
+        "name": "updated_at",
+        "annotation": "datetime",
+        "value": null
+      },
+      {
+        "name": "opportunity_count",
+        "annotation": "int",
+        "value": "0"
+      },
+      {
+        "name": "model_config",
+        "annotation": null,
+        "value": "ConfigDict(from_attributes=True)"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "AdminUserResponse",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/admin/users.py:10",
+    "table": null,
+    "fields": [
+      {
+        "name": "id",
+        "annotation": "UUID",
+        "value": null
+      },
+      {
+        "name": "first_name",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "last_name",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "email",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "mobile_number",
+        "annotation": "Optional[str]",
+        "value": null
+      },
+      {
+        "name": "user_type",
+        "annotation": "UserType",
+        "value": null
+      },
+      {
+        "name": "profile_status",
+        "annotation": "ProfileStatus",
+        "value": null
+      },
+      {
+        "name": "is_active",
+        "annotation": "bool",
+        "value": null
+      },
+      {
+        "name": "is_verified",
+        "annotation": "bool",
+        "value": null
+      },
+      {
+        "name": "title",
+        "annotation": "Optional[TitleType]",
+        "value": null
+      },
+      {
+        "name": "gender",
+        "annotation": "Optional[GenderType]",
+        "value": null
+      },
+      {
+        "name": "designation",
+        "annotation": "Optional[DesignationType]",
+        "value": null
+      },
+      {
+        "name": "company",
+        "annotation": "Optional[str]",
+        "value": null
+      },
+      {
+        "name": "address_city",
+        "annotation": "Optional[str]",
+        "value": null
+      },
+      {
+        "name": "address_state",
+        "annotation": "Optional[str]",
+        "value": null
+      },
+      {
+        "name": "address_country",
+        "annotation": "Optional[str]",
+        "value": null
+      },
+      {
+        "name": "date_of_birth",
+        "annotation": "Optional[date]",
+        "value": null
+      },
+      {
+        "name": "created_at",
+        "annotation": "datetime",
+        "value": null
+      },
+      {
+        "name": "updated_at",
+        "annotation": "datetime",
+        "value": null
+      },
+      {
+        "name": "model_config",
+        "annotation": null,
+        "value": "ConfigDict(from_attributes=True)"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "AdminUserUpdate",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/admin/users.py:34",
+    "table": null,
+    "fields": [
+      {
+        "name": "user_type",
+        "annotation": "Optional[UserType]",
+        "value": "None"
+      },
+      {
+        "name": "is_active",
+        "annotation": "Optional[bool]",
+        "value": "None"
+      },
+      {
+        "name": "is_verified",
+        "annotation": "Optional[bool]",
+        "value": "None"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "ApplicationCreateRequest",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/application.py:9",
+    "table": null,
+    "fields": [
+      {
+        "name": "opportunity_id",
+        "annotation": "uuid.UUID",
+        "value": null
+      },
+      {
+        "name": "cover_note",
+        "annotation": "str | None",
+        "value": "None"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "ApplicationUpdateRequest",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/application.py:14",
+    "table": null,
+    "fields": [
+      {
+        "name": "status",
+        "annotation": "ApplicationStatus | None",
+        "value": "None"
+      },
+      {
+        "name": "cover_note",
+        "annotation": "str | None",
+        "value": "None"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "ApplicationResponse",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/application.py:19",
+    "table": null,
+    "fields": [
+      {
+        "name": "model_config",
+        "annotation": null,
+        "value": "ConfigDict(from_attributes=True)"
+      },
+      {
+        "name": "id",
+        "annotation": "uuid.UUID",
+        "value": null
+      },
+      {
+        "name": "opportunity_id",
+        "annotation": "uuid.UUID",
+        "value": null
+      },
+      {
+        "name": "applicant_id",
+        "annotation": "uuid.UUID",
+        "value": null
+      },
+      {
+        "name": "status",
+        "annotation": "ApplicationStatus",
+        "value": null
+      },
+      {
+        "name": "cover_note",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "applied_at",
+        "annotation": "datetime",
+        "value": null
+      },
+      {
+        "name": "updated_at",
+        "annotation": "datetime",
+        "value": null
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "RegisterRequest",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/auth.py:6",
+    "table": null,
+    "fields": [
+      {
+        "name": "first_name",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "last_name",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "email",
+        "annotation": "EmailStr",
+        "value": null
+      },
+      {
+        "name": "mobile_number",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "password",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "user_type",
+        "annotation": "UserType",
+        "value": "UserType.FREELANCER"
+      }
+    ],
+    "methods": [
+      "def password_min_length(cls, v: str) -> str:\n        if len(v) < 8:\n            raise ValueError(\"Password must be at least 8 characters\")\n        return v",
+      "def name_not_blank(cls, v: str) -> str:\n        v = v.strip()\n        if not v:\n            raise ValueError(\"Name fields cannot be blank\")\n        return v"
+    ]
+  },
+  {
+    "class": "LoginRequest",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/auth.py:30",
+    "table": null,
+    "fields": [
+      {
+        "name": "email",
+        "annotation": "EmailStr",
+        "value": null
+      },
+      {
+        "name": "password",
+        "annotation": "str",
+        "value": null
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "RefreshRequest",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/auth.py:35",
+    "table": null,
+    "fields": [
+      {
+        "name": "refresh_token",
+        "annotation": "str",
+        "value": null
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "TokenResponse",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/auth.py:39",
+    "table": null,
+    "fields": [
+      {
+        "name": "access_token",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "refresh_token",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "token_type",
+        "annotation": "str",
+        "value": "'bearer'"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "AccessTokenResponse",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/auth.py:45",
+    "table": null,
+    "fields": [
+      {
+        "name": "access_token",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "token_type",
+        "annotation": "str",
+        "value": "'bearer'"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "MessageResponse",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/common.py:8",
+    "table": null,
+    "fields": [
+      {
+        "name": "message",
+        "annotation": "str",
+        "value": null
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "HealthResponse",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/common.py:12",
+    "table": null,
+    "fields": [
+      {
+        "name": "status",
+        "annotation": "str",
+        "value": null
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "PaginatedResponse",
+    "bases": [
+      "BaseModel",
+      "Generic[T]"
+    ],
+    "source": "backend/app/schemas/common.py:16",
+    "table": null,
+    "fields": [
+      {
+        "name": "items",
+        "annotation": "list[T]",
+        "value": null
+      },
+      {
+        "name": "total",
+        "annotation": "int",
+        "value": null
+      },
+      {
+        "name": "page",
+        "annotation": "int",
+        "value": null
+      },
+      {
+        "name": "size",
+        "annotation": "int",
+        "value": null
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "ExperienceEntryCreate",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/experience.py:10",
+    "table": null,
+    "fields": [
+      {
+        "name": "job_title",
+        "annotation": "str",
+        "value": "Field(..., min_length=1, max_length=200)"
+      },
+      {
+        "name": "organization",
+        "annotation": "str",
+        "value": "Field(..., min_length=1, max_length=200)"
+      },
+      {
+        "name": "location",
+        "annotation": "Optional[str]",
+        "value": "Field(None, max_length=200)"
+      },
+      {
+        "name": "location_type",
+        "annotation": "Optional[LocationType]",
+        "value": "None"
+      },
+      {
+        "name": "employment_type",
+        "annotation": "Optional[EmploymentType]",
+        "value": "None"
+      },
+      {
+        "name": "is_current",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "start_month",
+        "annotation": "int",
+        "value": "Field(..., ge=1, le=12)"
+      },
+      {
+        "name": "start_year",
+        "annotation": "int",
+        "value": "Field(..., ge=1900)"
+      },
+      {
+        "name": "end_month",
+        "annotation": "Optional[int]",
+        "value": "Field(None, ge=1, le=12)"
+      },
+      {
+        "name": "end_year",
+        "annotation": "Optional[int]",
+        "value": "Field(None, ge=1900)"
+      },
+      {
+        "name": "highlights",
+        "annotation": "Optional[str]",
+        "value": "Field(None, max_length=1000)"
+      },
+      {
+        "name": "skills",
+        "annotation": "Optional[list[str]]",
+        "value": "None"
+      }
+    ],
+    "methods": [
+      "def non_blank(cls, v: str) -> str:\n        if not v.strip():\n            raise ValueError(\"This field cannot be blank\")\n        return v.strip()",
+      "def validate_skills(cls, v: Optional[list[str]]) -> Optional[list[str]]:\n        if v is None:\n            return v\n        v = [s.strip() for s in v if s.strip()]\n        if len(v) > 20:\n            raise ValueError(\"Maximum 20 skills allowed\")\n        if any(len(s) > 100 for s in v):\n            raise ValueError(\"Each skill must be 100 characters or less\")\n        return v",
+      "def validate_end_date(self):\n        if self.is_current:\n            if self.end_month is not None or self.end_year is not None:\n                raise ValueError(\"End date must be empty when 'currently working here' is checked\")\n        else:\n            if bool(self.end_month) != bool(self.end_year):\n                raise ValueError(\"Provide both end month and end year, or neither\")\n        return self"
+    ]
+  },
+  {
+    "class": "ExperienceEntryUpdate",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/experience.py:54",
+    "table": null,
+    "fields": [
+      {
+        "name": "job_title",
+        "annotation": "Optional[str]",
+        "value": "Field(None, min_length=1, max_length=200)"
+      },
+      {
+        "name": "organization",
+        "annotation": "Optional[str]",
+        "value": "Field(None, min_length=1, max_length=200)"
+      },
+      {
+        "name": "location",
+        "annotation": "Optional[str]",
+        "value": "Field(None, max_length=200)"
+      },
+      {
+        "name": "location_type",
+        "annotation": "Optional[LocationType]",
+        "value": "None"
+      },
+      {
+        "name": "employment_type",
+        "annotation": "Optional[EmploymentType]",
+        "value": "None"
+      },
+      {
+        "name": "is_current",
+        "annotation": "Optional[bool]",
+        "value": "None"
+      },
+      {
+        "name": "start_month",
+        "annotation": "Optional[int]",
+        "value": "Field(None, ge=1, le=12)"
+      },
+      {
+        "name": "start_year",
+        "annotation": "Optional[int]",
+        "value": "Field(None, ge=1900)"
+      },
+      {
+        "name": "end_month",
+        "annotation": "Optional[int]",
+        "value": "Field(None, ge=1, le=12)"
+      },
+      {
+        "name": "end_year",
+        "annotation": "Optional[int]",
+        "value": "Field(None, ge=1900)"
+      },
+      {
+        "name": "highlights",
+        "annotation": "Optional[str]",
+        "value": "Field(None, max_length=1000)"
+      },
+      {
+        "name": "skills",
+        "annotation": "Optional[list[str]]",
+        "value": "None"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "ExperienceEntryResponse",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/experience.py:69",
+    "table": null,
+    "fields": [
+      {
+        "name": "id",
+        "annotation": "UUID",
+        "value": null
+      },
+      {
+        "name": "user_id",
+        "annotation": "UUID",
+        "value": null
+      },
+      {
+        "name": "job_title",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "organization",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "location",
+        "annotation": "Optional[str]",
+        "value": null
+      },
+      {
+        "name": "location_type",
+        "annotation": "Optional[LocationType]",
+        "value": null
+      },
+      {
+        "name": "employment_type",
+        "annotation": "Optional[EmploymentType]",
+        "value": null
+      },
+      {
+        "name": "is_current",
+        "annotation": "bool",
+        "value": null
+      },
+      {
+        "name": "start_month",
+        "annotation": "int",
+        "value": null
+      },
+      {
+        "name": "start_year",
+        "annotation": "int",
+        "value": null
+      },
+      {
+        "name": "end_month",
+        "annotation": "Optional[int]",
+        "value": null
+      },
+      {
+        "name": "end_year",
+        "annotation": "Optional[int]",
+        "value": null
+      },
+      {
+        "name": "highlights",
+        "annotation": "Optional[str]",
+        "value": null
+      },
+      {
+        "name": "skills",
+        "annotation": "Optional[list[str]]",
+        "value": null
+      },
+      {
+        "name": "created_at",
+        "annotation": "datetime",
+        "value": null
+      },
+      {
+        "name": "updated_at",
+        "annotation": "datetime",
+        "value": null
+      },
+      {
+        "name": "model_config",
+        "annotation": null,
+        "value": "ConfigDict(from_attributes=True)"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "UserExpertisePayload",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/expertise.py:10",
+    "table": null,
+    "fields": [
+      {
+        "name": "total_experience",
+        "annotation": "str",
+        "value": "Field(..., min_length=1, max_length=100)"
+      },
+      {
+        "name": "teaching_experience",
+        "annotation": "str",
+        "value": "Field(..., min_length=1, max_length=100)"
+      },
+      {
+        "name": "corporate_training",
+        "annotation": "str",
+        "value": "Field(..., min_length=1, max_length=100)"
+      },
+      {
+        "name": "online_training",
+        "annotation": "str",
+        "value": "Field(..., min_length=1, max_length=100)"
+      },
+      {
+        "name": "classroom_training",
+        "annotation": "str",
+        "value": "Field(..., min_length=1, max_length=100)"
+      },
+      {
+        "name": "primary_expertise",
+        "annotation": "str",
+        "value": "Field(..., min_length=1, max_length=200)"
+      },
+      {
+        "name": "secondary_expertise",
+        "annotation": "Optional[str]",
+        "value": "Field(None, max_length=200)"
+      },
+      {
+        "name": "audience_levels",
+        "annotation": "list[str]",
+        "value": "Field(..., min_length=1)"
+      }
+    ],
+    "methods": [
+      "def non_blank(cls, v: str) -> str:\n        if not v.strip():\n            raise ValueError(\"This field cannot be blank\")\n        return v.strip()",
+      "def validate_audience(cls, v: list[str]) -> list[str]:\n        if not v:\n            raise ValueError(\"Select at least one audience level\")\n        invalid = [x for x in v if x not in VALID_AUDIENCE_LEVELS]\n        if invalid:\n            raise ValueError(f\"Invalid audience level(s): {invalid}\")\n        return v"
+    ]
+  },
+  {
+    "class": "UserExpertiseResponse",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/expertise.py:41",
+    "table": null,
+    "fields": [
+      {
+        "name": "id",
+        "annotation": "UUID",
+        "value": null
+      },
+      {
+        "name": "user_id",
+        "annotation": "UUID",
+        "value": null
+      },
+      {
+        "name": "total_experience",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "teaching_experience",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "corporate_training",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "online_training",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "classroom_training",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "primary_expertise",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "secondary_expertise",
+        "annotation": "Optional[str]",
+        "value": null
+      },
+      {
+        "name": "audience_levels",
+        "annotation": "list[str]",
+        "value": null
+      },
+      {
+        "name": "created_at",
+        "annotation": "datetime",
+        "value": null
+      },
+      {
+        "name": "updated_at",
+        "annotation": "datetime",
+        "value": null
+      },
+      {
+        "name": "model_config",
+        "annotation": null,
+        "value": "ConfigDict(from_attributes=True)"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "AttachmentResponse",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/opportunity.py:21",
+    "table": null,
+    "fields": [
+      {
+        "name": "model_config",
+        "annotation": null,
+        "value": "ConfigDict(from_attributes=True)"
+      },
+      {
+        "name": "id",
+        "annotation": "uuid.UUID",
+        "value": null
+      },
+      {
+        "name": "opportunity_id",
+        "annotation": "uuid.UUID",
+        "value": null
+      },
+      {
+        "name": "file_name",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "file_path",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "file_size_bytes",
+        "annotation": "int",
+        "value": null
+      },
+      {
+        "name": "uploaded_at",
+        "annotation": "datetime",
+        "value": null
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "OpportunityCreateRequest",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/opportunity.py:34",
+    "table": null,
+    "fields": [
+      {
+        "name": "title",
+        "annotation": "str",
+        "value": "Field(..., max_length=512)"
+      },
+      {
+        "name": "opportunity_type",
+        "annotation": "OpportunityType",
+        "value": null
+      },
+      {
+        "name": "category",
+        "annotation": "str",
+        "value": "Field(..., max_length=200)"
+      },
+      {
+        "name": "sub_category",
+        "annotation": "str | None",
+        "value": "Field(None, max_length=200)"
+      },
+      {
+        "name": "delivery_modes",
+        "annotation": "list[str]",
+        "value": "Field(default_factory=list)"
+      },
+      {
+        "name": "number_of_openings",
+        "annotation": "int",
+        "value": "Field(1, ge=1)"
+      },
+      {
+        "name": "session_structure",
+        "annotation": "SessionStructureType",
+        "value": null
+      },
+      {
+        "name": "total_duration",
+        "annotation": "str",
+        "value": "Field(..., max_length=100)"
+      },
+      {
+        "name": "duration_per_session",
+        "annotation": "str",
+        "value": "Field(..., max_length=100)"
+      },
+      {
+        "name": "organization_id",
+        "annotation": "uuid.UUID | None",
+        "value": "None"
+      },
+      {
+        "name": "short_description",
+        "annotation": "str",
+        "value": "Field(..., max_length=500)"
+      },
+      {
+        "name": "detailed_description",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "tags",
+        "annotation": "list[str]",
+        "value": "Field(default_factory=list)"
+      },
+      {
+        "name": "event_date",
+        "annotation": "date",
+        "value": null
+      },
+      {
+        "name": "start_time",
+        "annotation": "time | None",
+        "value": "None"
+      },
+      {
+        "name": "end_time",
+        "annotation": "time | None",
+        "value": "None"
+      },
+      {
+        "name": "venue_name",
+        "annotation": "str | None",
+        "value": "Field(None, max_length=500)"
+      },
+      {
+        "name": "venue_location_type",
+        "annotation": "VenueLocationType | None",
+        "value": "None"
+      },
+      {
+        "name": "venue_address",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "target_audience",
+        "annotation": "list[str]",
+        "value": "Field(default_factory=list)"
+      },
+      {
+        "name": "skills_required",
+        "annotation": "list[str]",
+        "value": "Field(default_factory=list)"
+      },
+      {
+        "name": "minimum_experience",
+        "annotation": "str | None",
+        "value": "Field(None, max_length=100)"
+      },
+      {
+        "name": "expertise_level",
+        "annotation": "ExpertiseLevelType | None",
+        "value": "None"
+      },
+      {
+        "name": "additional_requirements",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "language_of_delivery",
+        "annotation": "str",
+        "value": "Field(..., max_length=100)"
+      },
+      {
+        "name": "preferred_location",
+        "annotation": "str | None",
+        "value": "Field(None, max_length=200)"
+      },
+      {
+        "name": "gender_preference",
+        "annotation": "str | None",
+        "value": "Field(None, max_length=50)"
+      },
+      {
+        "name": "candidate_preference",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "notes_for_applicants",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "application_deadline",
+        "annotation": "date | None",
+        "value": "None"
+      },
+      {
+        "name": "compensation_type",
+        "annotation": "CompensationType",
+        "value": "CompensationType.TBD"
+      },
+      {
+        "name": "fee_structure",
+        "annotation": "FeeStructureType | None",
+        "value": "None"
+      },
+      {
+        "name": "fee_amount",
+        "annotation": "Decimal | None",
+        "value": "None"
+      },
+      {
+        "name": "payment_terms",
+        "annotation": "str | None",
+        "value": "Field(None, max_length=200)"
+      },
+      {
+        "name": "travel_required",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "travel_reimbursement",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "other_benefits",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "visibility",
+        "annotation": "OpportunityVisibility",
+        "value": "OpportunityVisibility.VISIBLE_TO_ALL"
+      },
+      {
+        "name": "status",
+        "annotation": "OpportunityStatus",
+        "value": "OpportunityStatus.DRAFT"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "OpportunityUpdateRequest",
+    "bases": [
+      "OpportunityCreateRequest"
+    ],
+    "source": "backend/app/schemas/opportunity.py:91",
+    "table": null,
+    "fields": [
+      {
+        "name": "title",
+        "annotation": "str | None",
+        "value": "Field(None, max_length=512)"
+      },
+      {
+        "name": "opportunity_type",
+        "annotation": "OpportunityType | None",
+        "value": "None"
+      },
+      {
+        "name": "category",
+        "annotation": "str | None",
+        "value": "Field(None, max_length=200)"
+      },
+      {
+        "name": "session_structure",
+        "annotation": "SessionStructureType | None",
+        "value": "None"
+      },
+      {
+        "name": "total_duration",
+        "annotation": "str | None",
+        "value": "Field(None, max_length=100)"
+      },
+      {
+        "name": "duration_per_session",
+        "annotation": "str | None",
+        "value": "Field(None, max_length=100)"
+      },
+      {
+        "name": "short_description",
+        "annotation": "str | None",
+        "value": "Field(None, max_length=500)"
+      },
+      {
+        "name": "detailed_description",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "event_date",
+        "annotation": "date | None",
+        "value": "None"
+      },
+      {
+        "name": "language_of_delivery",
+        "annotation": "str | None",
+        "value": "Field(None, max_length=100)"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "OpportunityListItem",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/opportunity.py:107",
+    "table": null,
+    "fields": [
+      {
+        "name": "model_config",
+        "annotation": null,
+        "value": "ConfigDict(from_attributes=True)"
+      },
+      {
+        "name": "id",
+        "annotation": "uuid.UUID",
+        "value": null
+      },
+      {
+        "name": "title",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "opportunity_type",
+        "annotation": "OpportunityType",
+        "value": null
+      },
+      {
+        "name": "category",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "status",
+        "annotation": "OpportunityStatus",
+        "value": null
+      },
+      {
+        "name": "visibility",
+        "annotation": "OpportunityVisibility",
+        "value": null
+      },
+      {
+        "name": "organization_id",
+        "annotation": "uuid.UUID | None",
+        "value": null
+      },
+      {
+        "name": "organization_name",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "short_description",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "delivery_modes",
+        "annotation": "list[str]",
+        "value": "[]"
+      },
+      {
+        "name": "skills_required",
+        "annotation": "list[str]",
+        "value": "[]"
+      },
+      {
+        "name": "compensation_type",
+        "annotation": "CompensationType | None",
+        "value": "None"
+      },
+      {
+        "name": "fee_amount",
+        "annotation": "float | None",
+        "value": "None"
+      },
+      {
+        "name": "fee_structure",
+        "annotation": "FeeStructureType | None",
+        "value": "None"
+      },
+      {
+        "name": "number_of_openings",
+        "annotation": "int",
+        "value": null
+      },
+      {
+        "name": "event_date",
+        "annotation": "date",
+        "value": null
+      },
+      {
+        "name": "application_deadline",
+        "annotation": "date | None",
+        "value": "None"
+      },
+      {
+        "name": "created_at",
+        "annotation": "datetime",
+        "value": null
+      },
+      {
+        "name": "updated_at",
+        "annotation": "datetime",
+        "value": null
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "OpportunityResponse",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/opportunity.py:133",
+    "table": null,
+    "fields": [
+      {
+        "name": "model_config",
+        "annotation": null,
+        "value": "ConfigDict(from_attributes=True)"
+      },
+      {
+        "name": "id",
+        "annotation": "uuid.UUID",
+        "value": null
+      },
+      {
+        "name": "title",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "opportunity_type",
+        "annotation": "OpportunityType",
+        "value": null
+      },
+      {
+        "name": "category",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "sub_category",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "delivery_modes",
+        "annotation": "list[str]",
+        "value": null
+      },
+      {
+        "name": "number_of_openings",
+        "annotation": "int",
+        "value": null
+      },
+      {
+        "name": "session_structure",
+        "annotation": "SessionStructureType",
+        "value": null
+      },
+      {
+        "name": "total_duration",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "duration_per_session",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "organization_id",
+        "annotation": "uuid.UUID | None",
+        "value": null
+      },
+      {
+        "name": "short_description",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "detailed_description",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "tags",
+        "annotation": "list[str]",
+        "value": null
+      },
+      {
+        "name": "event_date",
+        "annotation": "date",
+        "value": null
+      },
+      {
+        "name": "start_time",
+        "annotation": "time | None",
+        "value": null
+      },
+      {
+        "name": "end_time",
+        "annotation": "time | None",
+        "value": null
+      },
+      {
+        "name": "venue_name",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "venue_location_type",
+        "annotation": "VenueLocationType | None",
+        "value": null
+      },
+      {
+        "name": "venue_address",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "target_audience",
+        "annotation": "list[str]",
+        "value": null
+      },
+      {
+        "name": "skills_required",
+        "annotation": "list[str]",
+        "value": null
+      },
+      {
+        "name": "minimum_experience",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "expertise_level",
+        "annotation": "ExpertiseLevelType | None",
+        "value": null
+      },
+      {
+        "name": "additional_requirements",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "language_of_delivery",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "preferred_location",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "gender_preference",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "candidate_preference",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "notes_for_applicants",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "application_deadline",
+        "annotation": "date | None",
+        "value": null
+      },
+      {
+        "name": "compensation_type",
+        "annotation": "CompensationType",
+        "value": null
+      },
+      {
+        "name": "fee_structure",
+        "annotation": "FeeStructureType | None",
+        "value": null
+      },
+      {
+        "name": "fee_amount",
+        "annotation": "Decimal | None",
+        "value": null
+      },
+      {
+        "name": "payment_terms",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "travel_required",
+        "annotation": "bool",
+        "value": null
+      },
+      {
+        "name": "travel_reimbursement",
+        "annotation": "bool",
+        "value": null
+      },
+      {
+        "name": "other_benefits",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "visibility",
+        "annotation": "OpportunityVisibility",
+        "value": null
+      },
+      {
+        "name": "status",
+        "annotation": "OpportunityStatus",
+        "value": null
+      },
+      {
+        "name": "created_by",
+        "annotation": "uuid.UUID",
+        "value": null
+      },
+      {
+        "name": "created_at",
+        "annotation": "datetime",
+        "value": null
+      },
+      {
+        "name": "updated_at",
+        "annotation": "datetime",
+        "value": null
+      },
+      {
+        "name": "attachments",
+        "annotation": "list[AttachmentResponse]",
+        "value": "[]"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "OpportunityListingCard",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/opportunity_listing.py:7",
+    "table": null,
+    "fields": [
+      {
+        "name": "model_config",
+        "annotation": null,
+        "value": "ConfigDict(from_attributes=True)"
+      },
+      {
+        "name": "id",
+        "annotation": "uuid.UUID",
+        "value": null
+      },
+      {
+        "name": "title",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "opportunity_type",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "organization_name",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "short_description",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "delivery_modes",
+        "annotation": "list[str]",
+        "value": "[]"
+      },
+      {
+        "name": "skills_required",
+        "annotation": "list[str]",
+        "value": "[]"
+      },
+      {
+        "name": "tags",
+        "annotation": "list[str]",
+        "value": "[]"
+      },
+      {
+        "name": "venue_city",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "preferred_location",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "expertise_level",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "compensation_type",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "fee_amount",
+        "annotation": "float | None",
+        "value": "None"
+      },
+      {
+        "name": "fee_structure",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "number_of_openings",
+        "annotation": "int | None",
+        "value": "None"
+      },
+      {
+        "name": "application_deadline",
+        "annotation": "date | None",
+        "value": "None"
+      },
+      {
+        "name": "event_date",
+        "annotation": "date | None",
+        "value": "None"
+      },
+      {
+        "name": "created_at",
+        "annotation": "datetime",
+        "value": null
+      },
+      {
+        "name": "status",
+        "annotation": "str",
+        "value": null
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "PaginatedOpportunityListings",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/opportunity_listing.py:31",
+    "table": null,
+    "fields": [
+      {
+        "name": "items",
+        "annotation": "list[OpportunityListingCard]",
+        "value": null
+      },
+      {
+        "name": "total",
+        "annotation": "int",
+        "value": null
+      },
+      {
+        "name": "page",
+        "annotation": "int",
+        "value": null
+      },
+      {
+        "name": "size",
+        "annotation": "int",
+        "value": null
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "OrganizationCreateRequest",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/organization.py:9",
+    "table": null,
+    "fields": [
+      {
+        "name": "organization_name",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "organization_type",
+        "annotation": "OrganizationType | None",
+        "value": "None"
+      },
+      {
+        "name": "website",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "email",
+        "annotation": "EmailStr | None",
+        "value": "None"
+      },
+      {
+        "name": "mobile_number",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "address",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "city",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "state",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "country",
+        "annotation": "str | None",
+        "value": "None"
+      }
+    ],
+    "methods": [
+      "def name_not_blank(cls, v: str) -> str:\n        v = v.strip()\n        if not v:\n            raise ValueError(\"Organization name cannot be blank\")\n        return v"
+    ]
+  },
+  {
+    "class": "OrganizationUpdateRequest",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/organization.py:29",
+    "table": null,
+    "fields": [
+      {
+        "name": "organization_name",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "organization_type",
+        "annotation": "OrganizationType | None",
+        "value": "None"
+      },
+      {
+        "name": "website",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "email",
+        "annotation": "EmailStr | None",
+        "value": "None"
+      },
+      {
+        "name": "mobile_number",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "address",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "city",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "state",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "country",
+        "annotation": "str | None",
+        "value": "None"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "OrganizationResponse",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/organization.py:41",
+    "table": null,
+    "fields": [
+      {
+        "name": "model_config",
+        "annotation": null,
+        "value": "ConfigDict(from_attributes=True)"
+      },
+      {
+        "name": "id",
+        "annotation": "uuid.UUID",
+        "value": null
+      },
+      {
+        "name": "organization_name",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "organization_type",
+        "annotation": "OrganizationType | None",
+        "value": null
+      },
+      {
+        "name": "website",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "email",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "mobile_number",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "address",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "city",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "state",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "country",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "created_by",
+        "annotation": "uuid.UUID",
+        "value": null
+      },
+      {
+        "name": "created_at",
+        "annotation": "datetime",
+        "value": null
+      },
+      {
+        "name": "updated_at",
+        "annotation": "datetime",
+        "value": null
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "UserPreferencesPayload",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/preferences.py:12",
+    "table": null,
+    "fields": [
+      {
+        "name": "delivery_modes",
+        "annotation": "list[str]",
+        "value": "Field(..., min_length=1)"
+      },
+      {
+        "name": "geographic_preference",
+        "annotation": "list[str]",
+        "value": "Field(..., min_length=1)"
+      },
+      {
+        "name": "willing_to_travel",
+        "annotation": "bool",
+        "value": null
+      },
+      {
+        "name": "max_travel_distance",
+        "annotation": "Optional[str]",
+        "value": "None"
+      },
+      {
+        "name": "travel_reimbursement",
+        "annotation": "bool",
+        "value": null
+      },
+      {
+        "name": "preferred_audience",
+        "annotation": "list[str]",
+        "value": "Field(..., min_length=1)"
+      },
+      {
+        "name": "services",
+        "annotation": "list[str]",
+        "value": "Field(..., min_length=1)"
+      },
+      {
+        "name": "training_topics",
+        "annotation": "list[str]",
+        "value": "Field(..., min_length=1)"
+      }
+    ],
+    "methods": [
+      "def validate_delivery(cls, v: list[str]) -> list[str]:\n        invalid = [x for x in v if x not in VALID_DELIVERY_MODES]\n        if invalid:\n            raise ValueError(f\"Invalid delivery mode(s): {invalid}\")\n        return v",
+      "def validate_geo(cls, v: list[str]) -> list[str]:\n        invalid = [x for x in v if x not in VALID_GEO_PREFS]\n        if invalid:\n            raise ValueError(f\"Invalid geographic preference(s): {invalid}\")\n        return v",
+      "def validate_audience(cls, v: list[str]) -> list[str]:\n        invalid = [x for x in v if x not in VALID_AUDIENCES]\n        if invalid:\n            raise ValueError(f\"Invalid audience(s): {invalid}\")\n        return v",
+      "def validate_services(cls, v: list[str]) -> list[str]:\n        invalid = [x for x in v if x not in VALID_SERVICES]\n        if invalid:\n            raise ValueError(f\"Invalid service(s): {invalid}\")\n        return v",
+      "def validate_topics(cls, v: list[str]) -> list[str]:\n        cleaned = [t.strip() for t in v if t.strip()]\n        if not cleaned:\n            raise ValueError(\"At least one non-blank training topic is required\")\n        return cleaned",
+      "def check_travel_distance(self) -> \"UserPreferencesPayload\":\n        if self.willing_to_travel:\n            if not self.max_travel_distance:\n                raise ValueError(\"Maximum travel distance is required when willing to travel\")\n            if self.max_travel_distance not in VALID_DISTANCES:\n                raise ValueError(f\"Invalid travel distance: {self.max_travel_distance}\")\n        else:\n            self.max_travel_distance = None\n        return self"
+    ]
+  },
+  {
+    "class": "UserPreferencesResponse",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/preferences.py:74",
+    "table": null,
+    "fields": [
+      {
+        "name": "id",
+        "annotation": "UUID",
+        "value": null
+      },
+      {
+        "name": "user_id",
+        "annotation": "UUID",
+        "value": null
+      },
+      {
+        "name": "delivery_modes",
+        "annotation": "list[str]",
+        "value": null
+      },
+      {
+        "name": "geographic_preference",
+        "annotation": "list[str]",
+        "value": null
+      },
+      {
+        "name": "willing_to_travel",
+        "annotation": "bool",
+        "value": null
+      },
+      {
+        "name": "max_travel_distance",
+        "annotation": "Optional[str]",
+        "value": null
+      },
+      {
+        "name": "travel_reimbursement",
+        "annotation": "bool",
+        "value": null
+      },
+      {
+        "name": "preferred_audience",
+        "annotation": "list[str]",
+        "value": null
+      },
+      {
+        "name": "services",
+        "annotation": "list[str]",
+        "value": null
+      },
+      {
+        "name": "training_topics",
+        "annotation": "list[str]",
+        "value": null
+      },
+      {
+        "name": "created_at",
+        "annotation": "datetime",
+        "value": null
+      },
+      {
+        "name": "updated_at",
+        "annotation": "datetime",
+        "value": null
+      },
+      {
+        "name": "model_config",
+        "annotation": null,
+        "value": "ConfigDict(from_attributes=True)"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "UserServiceDeliveryPayload",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/service_delivery.py:7",
+    "table": null,
+    "fields": [
+      {
+        "name": "can_take_lecture",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "lecture_classroom",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "lecture_online",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "lecture_offline_recording",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "lecture_blended_flipped",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "lecture_hybrid_hyflex",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "lecture_hands_on_workshop",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "lecture_mentoring",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "can_create_content",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "content_creation",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "content_explainer",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "content_presentation",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "content_course_design",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "content_syllabus_design",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "content_reference_material",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "lang_translation",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "lang_transcription",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "lang_transcript_review",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "lang_proofreading",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "lang_voiceover",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "lang_localization",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "lang_subtitling",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "eval_case_study_creation",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "eval_case_study_review",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "eval_case_study_mentoring",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "eval_assignment_creation",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "eval_assignment_review",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "eval_assignment_mentoring",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "eval_qbank_creation",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "eval_qbank_review",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "eval_qpaper_creation",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "eval_qpaper_review",
+        "annotation": "bool",
+        "value": "False"
+      },
+      {
+        "name": "eval_qpaper_grading",
+        "annotation": "bool",
+        "value": "False"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "UserServiceDeliveryResponse",
+    "bases": [
+      "UserServiceDeliveryPayload"
+    ],
+    "source": "backend/app/schemas/service_delivery.py:47",
+    "table": null,
+    "fields": [
+      {
+        "name": "model_config",
+        "annotation": null,
+        "value": "ConfigDict(from_attributes=True)"
+      },
+      {
+        "name": "id",
+        "annotation": "UUID",
+        "value": null
+      },
+      {
+        "name": "user_id",
+        "annotation": "UUID",
+        "value": null
+      },
+      {
+        "name": "created_at",
+        "annotation": "datetime",
+        "value": null
+      },
+      {
+        "name": "updated_at",
+        "annotation": "datetime",
+        "value": null
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "UserResponse",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/user.py:16",
+    "table": null,
+    "fields": [
+      {
+        "name": "model_config",
+        "annotation": null,
+        "value": "ConfigDict(from_attributes=True)"
+      },
+      {
+        "name": "id",
+        "annotation": "uuid.UUID",
+        "value": null
+      },
+      {
+        "name": "first_name",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "last_name",
+        "annotation": "str",
+        "value": null
+      },
+      {
+        "name": "email",
+        "annotation": "EmailStr",
+        "value": null
+      },
+      {
+        "name": "mobile_number",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "user_type",
+        "annotation": "UserType",
+        "value": null
+      },
+      {
+        "name": "profile_status",
+        "annotation": "ProfileStatus",
+        "value": null
+      },
+      {
+        "name": "is_active",
+        "annotation": "bool",
+        "value": null
+      },
+      {
+        "name": "is_verified",
+        "annotation": "bool",
+        "value": null
+      },
+      {
+        "name": "date_of_birth",
+        "annotation": "date | None",
+        "value": null
+      },
+      {
+        "name": "cv_file_path",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "profile_photo_path",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "title",
+        "annotation": "TitleType | None",
+        "value": null
+      },
+      {
+        "name": "gender",
+        "annotation": "GenderType | None",
+        "value": null
+      },
+      {
+        "name": "website",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "linkedin",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "company",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "designation",
+        "annotation": "DesignationType | None",
+        "value": null
+      },
+      {
+        "name": "short_bio",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "address_flat",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "address_area",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "address_city",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "address_state",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "address_country",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "address_pincode",
+        "annotation": "str | None",
+        "value": null
+      },
+      {
+        "name": "consent",
+        "annotation": "bool",
+        "value": null
+      },
+      {
+        "name": "created_at",
+        "annotation": "datetime",
+        "value": null
+      },
+      {
+        "name": "updated_at",
+        "annotation": "datetime",
+        "value": null
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "UserProfileUpdateRequest",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/user.py:56",
+    "table": null,
+    "fields": [
+      {
+        "name": "first_name",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "last_name",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "title",
+        "annotation": "TitleType | None",
+        "value": "None"
+      },
+      {
+        "name": "gender",
+        "annotation": "GenderType | None",
+        "value": "None"
+      },
+      {
+        "name": "mobile_number",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "website",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "linkedin",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "date_of_birth",
+        "annotation": "date | None",
+        "value": "None"
+      },
+      {
+        "name": "company",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "designation",
+        "annotation": "DesignationType | None",
+        "value": "None"
+      },
+      {
+        "name": "short_bio",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "address_flat",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "address_area",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "address_city",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "address_state",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "address_country",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "address_pincode",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "user_type",
+        "annotation": "UserType | None",
+        "value": "None"
+      },
+      {
+        "name": "consent",
+        "annotation": "bool | None",
+        "value": "None"
+      }
+    ],
+    "methods": [
+      "def name_not_blank(cls, v: str | None) -> str | None:\n        if v is not None:\n            v = v.strip()\n            if not v:\n                raise ValueError(\"Name cannot be blank\")\n        return v",
+      "def mobile_ten_digits(cls, v: str | None) -> str | None:\n        if v is not None and v != \"\":\n            if not re.fullmatch(r\"\\d{10}\", v):\n                raise ValueError(\"Mobile number must be exactly 10 digits\")\n        return v",
+      "def age_at_least_21(cls, v: date | None) -> date | None:\n        if v is not None:\n            from datetime import date as date_cls\n            today = date_cls.today()\n            age = today.year - v.year - ((today.month, today.day) < (v.month, v.day))\n            if age < 21:\n                raise ValueError(\"Must be at least 21 years old\")\n        return v",
+      "def valid_url(cls, v: str | None) -> str | None:\n        if v is not None and v != \"\":\n            if not re.match(r\"^https?://\", v):\n                raise ValueError(\"Must start with http:// or https://\")\n        return v",
+      "def pincode_digits(cls, v: str | None) -> str | None:\n        if v is not None and v != \"\":\n            if not re.fullmatch(r\"\\d{1,6}\", v):\n                raise ValueError(\"Pincode must be up to 6 digits\")\n        return v"
+    ]
+  },
+  {
+    "class": "ProfileCompletionResponse",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/user.py:124",
+    "table": null,
+    "fields": [
+      {
+        "name": "percentage",
+        "annotation": "int",
+        "value": null
+      },
+      {
+        "name": "missing_fields",
+        "annotation": "list[str]",
+        "value": null
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "UserUpdateRequest",
+    "bases": [
+      "BaseModel"
+    ],
+    "source": "backend/app/schemas/user.py:130",
+    "table": null,
+    "fields": [
+      {
+        "name": "first_name",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "last_name",
+        "annotation": "str | None",
+        "value": "None"
+      },
+      {
+        "name": "mobile_number",
+        "annotation": "str | None",
+        "value": "None"
+      }
+    ],
+    "methods": []
+  }
+]

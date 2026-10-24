@@ -1,0 +1,2412 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v1/admin/categories",
+    "handler": "list_categories",
+    "source": "backend/app/api/v1/admin/categories.py:17",
+    "response_model": "list[CategoryResponse]",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "require_super_admin",
+      "get_db"
+    ],
+    "auth_dependency": "require_super_admin",
+    "handler_errors": [],
+    "ownership_evidence": [],
+    "query_evidence": [
+      "return db.query(Category).order_by(Category.name).all()"
+    ],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/admin/categories",
+    "handler": "create_category",
+    "source": "backend/app/api/v1/admin/categories.py:25",
+    "response_model": "CategoryResponse",
+    "status_expression": "status.HTTP_201_CREATED",
+    "parameters": [
+      {
+        "name": "data",
+        "annotation": "CategoryCreate",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "require_super_admin",
+      "get_db"
+    ],
+    "auth_dependency": "require_super_admin",
+    "handler_errors": [
+      {
+        "status_code": "409",
+        "detail": "'A category with this name already exists'"
+      }
+    ],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/admin/categories/{cat_id}",
+    "handler": "delete_category",
+    "source": "backend/app/api/v1/admin/categories.py:62",
+    "response_model": null,
+    "status_expression": "status.HTTP_204_NO_CONTENT",
+    "parameters": [
+      {
+        "name": "cat_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "require_super_admin",
+      "get_db"
+    ],
+    "auth_dependency": "require_super_admin",
+    "handler_errors": [
+      {
+        "status_code": "404",
+        "detail": "'Category not found'"
+      }
+    ],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v1/admin/categories/{cat_id}",
+    "handler": "update_category",
+    "source": "backend/app/api/v1/admin/categories.py:41",
+    "response_model": "CategoryResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "cat_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "data",
+        "annotation": "CategoryUpdate",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "require_super_admin",
+      "get_db"
+    ],
+    "auth_dependency": "require_super_admin",
+    "handler_errors": [
+      {
+        "status_code": "404",
+        "detail": "'Category not found'"
+      },
+      {
+        "status_code": "409",
+        "detail": "'A category with this name already exists'"
+      }
+    ],
+    "ownership_evidence": [],
+    "query_evidence": [
+      "for field, value in data.model_dump(exclude_unset=True).items():"
+    ],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/admin/dashboard",
+    "handler": "get_dashboard_stats",
+    "source": "backend/app/api/v1/admin/dashboard.py:17",
+    "response_model": "DashboardStats",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "require_super_admin",
+      "get_db"
+    ],
+    "auth_dependency": "require_super_admin",
+    "handler_errors": [],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/admin/opportunities",
+    "handler": "list_opportunities",
+    "source": "backend/app/api/v1/admin/opportunities.py:47",
+    "response_model": "PaginatedResponse[OpportunityListItem]",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      },
+      {
+        "name": "page",
+        "annotation": "int",
+        "default": "Query(1, ge=1)"
+      },
+      {
+        "name": "size",
+        "annotation": "int",
+        "default": "Query(20, ge=1, le=100)"
+      },
+      {
+        "name": "status",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "opportunity_type",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "search",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      }
+    ],
+    "dependencies": [
+      "require_super_admin",
+      "get_db"
+    ],
+    "auth_dependency": "require_super_admin",
+    "handler_errors": [],
+    "ownership_evidence": [],
+    "query_evidence": [
+      "q.order_by(Opportunity.created_at.desc())"
+    ],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/admin/opportunities",
+    "handler": "create_opportunity",
+    "source": "backend/app/api/v1/admin/opportunities.py:109",
+    "response_model": "OpportunityResponse",
+    "status_expression": "201",
+    "parameters": [
+      {
+        "name": "body",
+        "annotation": "OpportunityCreateRequest",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "require_super_admin",
+      "get_db"
+    ],
+    "auth_dependency": "require_super_admin",
+    "handler_errors": [],
+    "ownership_evidence": [
+      "data[\"created_by\"] = current_user.id"
+    ],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/admin/opportunities/{opp_id}",
+    "handler": "delete_opportunity",
+    "source": "backend/app/api/v1/admin/opportunities.py:194",
+    "response_model": null,
+    "status_expression": "204",
+    "parameters": [
+      {
+        "name": "opp_id",
+        "annotation": "uuid.UUID",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "require_super_admin",
+      "get_db"
+    ],
+    "auth_dependency": "require_super_admin",
+    "handler_errors": [
+      {
+        "status_code": "409",
+        "detail": "'Only DRAFT opportunities can be deleted'"
+      }
+    ],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/admin/opportunities/{opp_id}",
+    "handler": "get_opportunity",
+    "source": "backend/app/api/v1/admin/opportunities.py:126",
+    "response_model": "OpportunityResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "opp_id",
+        "annotation": "uuid.UUID",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "require_super_admin",
+      "get_db"
+    ],
+    "auth_dependency": "require_super_admin",
+    "handler_errors": [],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v1/admin/opportunities/{opp_id}",
+    "handler": "update_opportunity",
+    "source": "backend/app/api/v1/admin/opportunities.py:137",
+    "response_model": "OpportunityResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "opp_id",
+        "annotation": "uuid.UUID",
+        "default": null
+      },
+      {
+        "name": "body",
+        "annotation": "OpportunityUpdateRequest",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "require_super_admin",
+      "get_db"
+    ],
+    "auth_dependency": "require_super_admin",
+    "handler_errors": [],
+    "ownership_evidence": [],
+    "query_evidence": [
+      "update_data = body.model_dump(exclude_unset=True)"
+    ],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/admin/opportunities/{opp_id}/archive",
+    "handler": "archive_opportunity",
+    "source": "backend/app/api/v1/admin/opportunities.py:179",
+    "response_model": "OpportunityResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "opp_id",
+        "annotation": "uuid.UUID",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "require_super_admin",
+      "get_db"
+    ],
+    "auth_dependency": "require_super_admin",
+    "handler_errors": [],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/admin/opportunities/{opp_id}/attachments",
+    "handler": "upload_attachment",
+    "source": "backend/app/api/v1/admin/opportunities.py:217",
+    "response_model": "AttachmentResponse",
+    "status_expression": "201",
+    "parameters": [
+      {
+        "name": "opp_id",
+        "annotation": "uuid.UUID",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      },
+      {
+        "name": "file",
+        "annotation": "UploadFile",
+        "default": "File(...)"
+      }
+    ],
+    "dependencies": [
+      "require_super_admin",
+      "get_db"
+    ],
+    "auth_dependency": "require_super_admin",
+    "handler_errors": [
+      {
+        "status_code": "422",
+        "detail": "f'Maximum {_MAX_ATTACHMENTS} attachments allowed per opportunity'"
+      },
+      {
+        "status_code": "422",
+        "detail": "f\"File type not allowed. Allowed: {', '.join(_ALLOWED_EXTENSIONS)}\""
+      },
+      {
+        "status_code": "422",
+        "detail": "'File exceeds 10 MB limit'"
+      }
+    ],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/admin/opportunities/{opp_id}/attachments/{attachment_id}",
+    "handler": "delete_attachment",
+    "source": "backend/app/api/v1/admin/opportunities.py:268",
+    "response_model": null,
+    "status_expression": "204",
+    "parameters": [
+      {
+        "name": "opp_id",
+        "annotation": "uuid.UUID",
+        "default": null
+      },
+      {
+        "name": "attachment_id",
+        "annotation": "uuid.UUID",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "require_super_admin",
+      "get_db"
+    ],
+    "auth_dependency": "require_super_admin",
+    "handler_errors": [
+      {
+        "status_code": "404",
+        "detail": "'Attachment not found'"
+      }
+    ],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/admin/opportunities/{opp_id}/publish",
+    "handler": "publish_opportunity",
+    "source": "backend/app/api/v1/admin/opportunities.py:155",
+    "response_model": "OpportunityResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "opp_id",
+        "annotation": "uuid.UUID",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "require_super_admin",
+      "get_db"
+    ],
+    "auth_dependency": "require_super_admin",
+    "handler_errors": [
+      {
+        "status_code": "409",
+        "detail": "f'Cannot publish opportunity with status {opp.status.value}'"
+      },
+      {
+        "status_code": "422",
+        "detail": "'organization_id is required to publish'"
+      }
+    ],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/admin/organisations",
+    "handler": "list_organisations",
+    "source": "backend/app/api/v1/admin/organisations.py:44",
+    "response_model": "PaginatedResponse[AdminOrgResponse]",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      },
+      {
+        "name": "page",
+        "annotation": "int",
+        "default": "Query(1, ge=1)"
+      },
+      {
+        "name": "size",
+        "annotation": "int",
+        "default": "Query(20, ge=1, le=200)"
+      },
+      {
+        "name": "search",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "industry",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      }
+    ],
+    "dependencies": [
+      "require_super_admin",
+      "get_db"
+    ],
+    "auth_dependency": "require_super_admin",
+    "handler_errors": [],
+    "ownership_evidence": [],
+    "query_evidence": [
+      "orgs = q.order_by(Organization.created_at.desc()).offset((page - 1) * size).limit(size).all()"
+    ],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/admin/organisations",
+    "handler": "create_organisation",
+    "source": "backend/app/api/v1/admin/organisations.py:84",
+    "response_model": "AdminOrgResponse",
+    "status_expression": "201",
+    "parameters": [
+      {
+        "name": "body",
+        "annotation": "AdminOrgCreateRequest",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "require_super_admin",
+      "get_db"
+    ],
+    "auth_dependency": "require_super_admin",
+    "handler_errors": [],
+    "ownership_evidence": [
+      "org = Organization(**body.model_dump(), created_by=current_user.id)"
+    ],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/admin/organisations/{org_id}",
+    "handler": "delete_organisation",
+    "source": "backend/app/api/v1/admin/organisations.py:128",
+    "response_model": null,
+    "status_expression": "204",
+    "parameters": [
+      {
+        "name": "org_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "require_super_admin",
+      "get_db"
+    ],
+    "auth_dependency": "require_super_admin",
+    "handler_errors": [
+      {
+        "status_code": "409",
+        "detail": "f\"Cannot delete — organisation has {opp_count} linked opportunit{('y' if opp_count == 1 else 'ies')}\""
+      }
+    ],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/admin/organisations/{org_id}",
+    "handler": "get_organisation",
+    "source": "backend/app/api/v1/admin/organisations.py:99",
+    "response_model": "AdminOrgResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "org_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "require_super_admin",
+      "get_db"
+    ],
+    "auth_dependency": "require_super_admin",
+    "handler_errors": [],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v1/admin/organisations/{org_id}",
+    "handler": "update_organisation",
+    "source": "backend/app/api/v1/admin/organisations.py:111",
+    "response_model": "AdminOrgResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "org_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "body",
+        "annotation": "AdminOrgUpdateRequest",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "require_super_admin",
+      "get_db"
+    ],
+    "auth_dependency": "require_super_admin",
+    "handler_errors": [],
+    "ownership_evidence": [],
+    "query_evidence": [
+      "for field, value in body.model_dump(exclude_unset=True).items():"
+    ],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/admin/users",
+    "handler": "list_users",
+    "source": "backend/app/api/v1/admin/users.py:17",
+    "response_model": "PaginatedResponse[AdminUserResponse]",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      },
+      {
+        "name": "page",
+        "annotation": "int",
+        "default": "Query(1, ge=1)"
+      },
+      {
+        "name": "size",
+        "annotation": "int",
+        "default": "Query(20, ge=1, le=100)"
+      },
+      {
+        "name": "search",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "user_type",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "is_active",
+        "annotation": "Optional[bool]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "is_verified",
+        "annotation": "Optional[bool]",
+        "default": "Query(None)"
+      }
+    ],
+    "dependencies": [
+      "require_super_admin",
+      "get_db"
+    ],
+    "auth_dependency": "require_super_admin",
+    "handler_errors": [],
+    "ownership_evidence": [],
+    "query_evidence": [
+      "items = q.order_by(User.created_at.desc()).offset((page - 1) * size).limit(size).all()"
+    ],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/admin/users/{user_id}",
+    "handler": "get_user",
+    "source": "backend/app/api/v1/admin/users.py:50",
+    "response_model": "AdminUserResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "user_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "require_super_admin",
+      "get_db"
+    ],
+    "auth_dependency": "require_super_admin",
+    "handler_errors": [
+      {
+        "status_code": "404",
+        "detail": "'User not found'"
+      }
+    ],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/v1/admin/users/{user_id}",
+    "handler": "update_user",
+    "source": "backend/app/api/v1/admin/users.py:62",
+    "response_model": "AdminUserResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "user_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "data",
+        "annotation": "AdminUserUpdate",
+        "default": null
+      },
+      {
+        "name": "_",
+        "annotation": "Annotated[User, Depends(require_super_admin)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "require_super_admin",
+      "get_db"
+    ],
+    "auth_dependency": "require_super_admin",
+    "handler_errors": [
+      {
+        "status_code": "404",
+        "detail": "'User not found'"
+      }
+    ],
+    "ownership_evidence": [],
+    "query_evidence": [
+      "for field, value in data.model_dump(exclude_unset=True).items():"
+    ],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/applications/",
+    "handler": "list_my_applications",
+    "source": "backend/app/api/v1/applications.py:12",
+    "response_model": null,
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "_current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "placeholder",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/applications/",
+    "handler": "submit_application",
+    "source": "backend/app/api/v1/applications.py:20",
+    "response_model": null,
+    "status_expression": "201",
+    "parameters": [
+      {
+        "name": "_current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "placeholder",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/auth/login",
+    "handler": "login",
+    "source": "backend/app/api/v1/auth.py:92",
+    "response_model": "TokenResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "data",
+        "annotation": "LoginRequest",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_db"
+    ],
+    "auth_dependency": "public",
+    "handler_errors": [],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/auth/logout",
+    "handler": "logout",
+    "source": "backend/app/api/v1/auth.py:108",
+    "response_model": null,
+    "status_expression": "status.HTTP_204_NO_CONTENT",
+    "parameters": [
+      {
+        "name": "data",
+        "annotation": "RefreshRequest",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_db"
+    ],
+    "auth_dependency": "public",
+    "handler_errors": [],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/auth/me",
+    "handler": "get_me",
+    "source": "backend/app/api/v1/auth.py:116",
+    "response_model": "UserResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/auth/refresh",
+    "handler": "refresh",
+    "source": "backend/app/api/v1/auth.py:100",
+    "response_model": "AccessTokenResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "data",
+        "annotation": "RefreshRequest",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_db"
+    ],
+    "auth_dependency": "public",
+    "handler_errors": [],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/auth/register",
+    "handler": "register",
+    "source": "backend/app/api/v1/auth.py:27",
+    "response_model": "TokenResponse",
+    "status_expression": "status.HTTP_201_CREATED",
+    "parameters": [
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      },
+      {
+        "name": "first_name",
+        "annotation": "Annotated[str, Form()]",
+        "default": null
+      },
+      {
+        "name": "last_name",
+        "annotation": "Annotated[str, Form()]",
+        "default": null
+      },
+      {
+        "name": "email",
+        "annotation": "Annotated[str, Form()]",
+        "default": null
+      },
+      {
+        "name": "password",
+        "annotation": "Annotated[str, Form()]",
+        "default": null
+      },
+      {
+        "name": "confirm_password",
+        "annotation": "Annotated[str, Form()]",
+        "default": null
+      },
+      {
+        "name": "mobile_number",
+        "annotation": "Annotated[str | None, Form()]",
+        "default": "None"
+      },
+      {
+        "name": "user_type",
+        "annotation": "Annotated[UserType, Form()]",
+        "default": "UserType.FREELANCER"
+      },
+      {
+        "name": "date_of_birth",
+        "annotation": "Annotated[str | None, Form()]",
+        "default": "None"
+      },
+      {
+        "name": "cv",
+        "annotation": "Annotated[UploadFile | None, File()]",
+        "default": "None"
+      }
+    ],
+    "dependencies": [
+      "get_db"
+    ],
+    "auth_dependency": "public",
+    "handler_errors": [
+      {
+        "status_code": "status.HTTP_422_UNPROCESSABLE_ENTITY",
+        "detail": "'Passwords do not match'"
+      },
+      {
+        "status_code": "status.HTTP_422_UNPROCESSABLE_ENTITY",
+        "detail": "'Password must be at least 8 characters'"
+      },
+      {
+        "status_code": "status.HTTP_422_UNPROCESSABLE_ENTITY",
+        "detail": "'CV must be a PDF, DOC, or DOCX file'"
+      },
+      {
+        "status_code": "status.HTTP_422_UNPROCESSABLE_ENTITY",
+        "detail": "'CV file must be smaller than 5 MB'"
+      },
+      {
+        "status_code": "status.HTTP_422_UNPROCESSABLE_ENTITY",
+        "detail": "'Invalid date_of_birth — expected YYYY-MM-DD'"
+      }
+    ],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/dashboard/",
+    "handler": "get_dashboard",
+    "source": "backend/app/api/v1/dashboard.py:12",
+    "response_model": null,
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [],
+    "ownership_evidence": [
+      "\"user_id\": str(current_user.id),"
+    ],
+    "query_evidence": [],
+    "behavior": "placeholder",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/opportunities",
+    "handler": "list_opportunities",
+    "source": "backend/app/api/v1/opportunities.py:45",
+    "response_model": "PaginatedOpportunityListings",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      },
+      {
+        "name": "page",
+        "annotation": "int",
+        "default": "Query(1, ge=1)"
+      },
+      {
+        "name": "size",
+        "annotation": "int",
+        "default": "Query(12, ge=1, le=50)"
+      },
+      {
+        "name": "search",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "opportunity_type",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "delivery_mode",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "expertise_level",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "state",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "category",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "date_filter",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "duration_keyword",
+        "annotation": "Optional[str]",
+        "default": "Query(None)"
+      },
+      {
+        "name": "sort_by",
+        "annotation": "str",
+        "default": "Query('newest')"
+      },
+      {
+        "name": "tab",
+        "annotation": "str",
+        "default": "Query('all')"
+      }
+    ],
+    "dependencies": [
+      "get_current_user",
+      "get_db"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [],
+    "ownership_evidence": [
+      "(Application.applicant_id == current_user.id),"
+    ],
+    "query_evidence": [
+      "sa_func.array_to_string(Opportunity.tags, \",\").ilike(term),",
+      "sa_func.array_to_string(Opportunity.skills_required, \",\").ilike(term),",
+      "q = q.filter(Opportunity.delivery_modes.any(delivery_mode))",
+      "q = q.order_by(Opportunity.application_deadline.asc().nullslast())",
+      "q = q.order_by(Opportunity.fee_amount.desc().nullslast())",
+      "q = q.order_by(Opportunity.created_at.desc())"
+    ],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/opportunities/{opportunity_id}",
+    "handler": "get_opportunity",
+    "source": "backend/app/api/v1/opportunities.py:148",
+    "response_model": "OpportunityListingCard",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "opportunity_id",
+        "annotation": "uuid.UUID",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user",
+      "get_db"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [
+      {
+        "status_code": "404",
+        "detail": "'Opportunity not found'"
+      }
+    ],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/",
+    "handler": "list_organizations",
+    "source": "backend/app/api/v1/organizations.py:12",
+    "response_model": null,
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "_current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "placeholder",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/",
+    "handler": "create_organization",
+    "source": "backend/app/api/v1/organizations.py:19",
+    "response_model": null,
+    "status_expression": "201",
+    "parameters": [
+      {
+        "name": "_current_user",
+        "annotation": "Annotated[User, Depends(require_user_type(UserType.VENDOR, UserType.ADMIN))]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "require_user_type(UserType.VENDOR, UserType.ADMIN)"
+    ],
+    "auth_dependency": "require_user_type(UserType.VENDOR, UserType.ADMIN)",
+    "handler_errors": [],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "placeholder",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/users/",
+    "handler": "list_users",
+    "source": "backend/app/api/v1/users.py:51",
+    "response_model": "list[UserResponse]",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "_admin",
+        "annotation": "Annotated[User, Depends(require_user_type(UserType.ADMIN))]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "require_user_type(UserType.ADMIN)"
+    ],
+    "auth_dependency": "require_user_type(UserType.ADMIN)",
+    "handler_errors": [],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "placeholder",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/users/me",
+    "handler": "get_me",
+    "source": "backend/app/api/v1/users.py:44",
+    "response_model": "UserResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/users/me/academic",
+    "handler": "list_academic",
+    "source": "backend/app/api/v1/academic.py:17",
+    "response_model": "list[AcademicDetailResponse]",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user",
+      "get_db"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [],
+    "ownership_evidence": [
+      ".filter(AcademicDetail.user_id == current_user.id)"
+    ],
+    "query_evidence": [
+      ".order_by(AcademicDetail.end_year.desc().nullslast(), AcademicDetail.created_at.desc())"
+    ],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/users/me/academic",
+    "handler": "create_academic",
+    "source": "backend/app/api/v1/academic.py:30",
+    "response_model": "AcademicDetailResponse",
+    "status_expression": "status.HTTP_201_CREATED",
+    "parameters": [
+      {
+        "name": "data",
+        "annotation": "AcademicDetailCreate",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user",
+      "get_db"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [],
+    "ownership_evidence": [
+      "entry = AcademicDetail(**data.model_dump(), user_id=current_user.id)"
+    ],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/users/me/academic/{entry_id}",
+    "handler": "delete_academic",
+    "source": "backend/app/api/v1/academic.py:64",
+    "response_model": null,
+    "status_expression": "status.HTTP_204_NO_CONTENT",
+    "parameters": [
+      {
+        "name": "entry_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user",
+      "get_db"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [
+      {
+        "status_code": "404",
+        "detail": "'Academic entry not found'"
+      }
+    ],
+    "ownership_evidence": [
+      ".filter(AcademicDetail.id == entry_id, AcademicDetail.user_id == current_user.id)"
+    ],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v1/users/me/academic/{entry_id}",
+    "handler": "update_academic",
+    "source": "backend/app/api/v1/academic.py:43",
+    "response_model": "AcademicDetailResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "entry_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "data",
+        "annotation": "AcademicDetailUpdate",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user",
+      "get_db"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [
+      {
+        "status_code": "404",
+        "detail": "'Academic entry not found'"
+      }
+    ],
+    "ownership_evidence": [
+      ".filter(AcademicDetail.id == entry_id, AcademicDetail.user_id == current_user.id)"
+    ],
+    "query_evidence": [
+      "for field, value in data.model_dump(exclude_unset=True).items():"
+    ],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/users/me/achievements",
+    "handler": "list_achievements",
+    "source": "backend/app/api/v1/achievements.py:60",
+    "response_model": "list[AchievementResponse]",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user",
+      "get_db"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [],
+    "ownership_evidence": [
+      ".filter(Achievement.user_id == current_user.id)"
+    ],
+    "query_evidence": [
+      ".order_by(Achievement.created_at.desc())"
+    ],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/users/me/achievements",
+    "handler": "create_achievement",
+    "source": "backend/app/api/v1/achievements.py:73",
+    "response_model": "AchievementResponse",
+    "status_expression": "status.HTTP_201_CREATED",
+    "parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      },
+      {
+        "name": "title",
+        "annotation": "str",
+        "default": "Form(...)"
+      },
+      {
+        "name": "description",
+        "annotation": "str",
+        "default": "Form(...)"
+      },
+      {
+        "name": "file",
+        "annotation": "Optional[UploadFile]",
+        "default": "File(None)"
+      }
+    ],
+    "dependencies": [
+      "get_current_user",
+      "get_db"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [
+      {
+        "status_code": "422",
+        "detail": "'Title cannot be blank'"
+      },
+      {
+        "status_code": "422",
+        "detail": "'Description cannot be blank'"
+      }
+    ],
+    "ownership_evidence": [
+      "file_path, file_name = await _save_file(entry_id, current_user.id, file)",
+      "user_id=current_user.id,"
+    ],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/users/me/achievements/{entry_id}",
+    "handler": "delete_achievement",
+    "source": "backend/app/api/v1/achievements.py:144",
+    "response_model": null,
+    "status_expression": "status.HTTP_204_NO_CONTENT",
+    "parameters": [
+      {
+        "name": "entry_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user",
+      "get_db"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [
+      {
+        "status_code": "404",
+        "detail": "'Achievement not found'"
+      }
+    ],
+    "ownership_evidence": [
+      "Achievement.user_id == current_user.id,"
+    ],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v1/users/me/achievements/{entry_id}",
+    "handler": "update_achievement",
+    "source": "backend/app/api/v1/achievements.py:105",
+    "response_model": "AchievementResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "entry_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      },
+      {
+        "name": "title",
+        "annotation": "Optional[str]",
+        "default": "Form(None)"
+      },
+      {
+        "name": "description",
+        "annotation": "Optional[str]",
+        "default": "Form(None)"
+      },
+      {
+        "name": "file",
+        "annotation": "Optional[UploadFile]",
+        "default": "File(None)"
+      },
+      {
+        "name": "clear_file",
+        "annotation": "Optional[str]",
+        "default": "Form(None)"
+      }
+    ],
+    "dependencies": [
+      "get_current_user",
+      "get_db"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [
+      {
+        "status_code": "404",
+        "detail": "'Achievement not found'"
+      },
+      {
+        "status_code": "422",
+        "detail": "'Title cannot be blank'"
+      },
+      {
+        "status_code": "422",
+        "detail": "'Description cannot be blank'"
+      }
+    ],
+    "ownership_evidence": [
+      "Achievement.user_id == current_user.id,",
+      "entry.file_path, entry.file_name = await _save_file(entry_id, current_user.id, file)"
+    ],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/users/me/completion",
+    "handler": "get_completion",
+    "source": "backend/app/api/v1/users.py:111",
+    "response_model": "ProfileCompletionResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/users/me/experience",
+    "handler": "list_experience",
+    "source": "backend/app/api/v1/experience.py:22",
+    "response_model": "list[ExperienceEntryResponse]",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user",
+      "get_db"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [],
+    "ownership_evidence": [
+      ".filter(ExperienceEntry.user_id == current_user.id)"
+    ],
+    "query_evidence": [
+      ".order_by(",
+      "nullslast(ExperienceEntry.start_year.desc()),",
+      "nullslast(ExperienceEntry.start_month.desc()),"
+    ],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/users/me/experience",
+    "handler": "create_experience",
+    "source": "backend/app/api/v1/experience.py:39",
+    "response_model": "ExperienceEntryResponse",
+    "status_expression": "status.HTTP_201_CREATED",
+    "parameters": [
+      {
+        "name": "data",
+        "annotation": "ExperienceEntryCreate",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user",
+      "get_db"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [],
+    "ownership_evidence": [
+      "entry = ExperienceEntry(**data.model_dump(), user_id=current_user.id)"
+    ],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/users/me/experience/{entry_id}",
+    "handler": "delete_experience",
+    "source": "backend/app/api/v1/experience.py:72",
+    "response_model": null,
+    "status_expression": "status.HTTP_204_NO_CONTENT",
+    "parameters": [
+      {
+        "name": "entry_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user",
+      "get_db"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [
+      {
+        "status_code": "404",
+        "detail": "'Experience entry not found'"
+      }
+    ],
+    "ownership_evidence": [
+      "ExperienceEntry.user_id == current_user.id,"
+    ],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v1/users/me/experience/{entry_id}",
+    "handler": "update_experience",
+    "source": "backend/app/api/v1/experience.py:52",
+    "response_model": "ExperienceEntryResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "entry_id",
+        "annotation": "UUID",
+        "default": null
+      },
+      {
+        "name": "data",
+        "annotation": "ExperienceEntryUpdate",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user",
+      "get_db"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [
+      {
+        "status_code": "404",
+        "detail": "'Experience entry not found'"
+      }
+    ],
+    "ownership_evidence": [
+      "ExperienceEntry.user_id == current_user.id,"
+    ],
+    "query_evidence": [
+      "for field, value in data.model_dump(exclude_unset=True).items():"
+    ],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/users/me/expertise",
+    "handler": "get_expertise",
+    "source": "backend/app/api/v1/expertise.py:17",
+    "response_model": "UserExpertiseResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user",
+      "get_db"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [
+      {
+        "status_code": "404",
+        "detail": "'Expertise not found'"
+      }
+    ],
+    "ownership_evidence": [
+      "record = db.query(UserExpertise).filter(UserExpertise.user_id == current_user.id).first()"
+    ],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v1/users/me/expertise",
+    "handler": "upsert_expertise",
+    "source": "backend/app/api/v1/expertise.py:28",
+    "response_model": "UserExpertiseResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "data",
+        "annotation": "UserExpertisePayload",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user",
+      "get_db"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [],
+    "ownership_evidence": [
+      "values = {**data.model_dump(), \"user_id\": current_user.id}",
+      "record = db.query(UserExpertise).filter(UserExpertise.user_id == current_user.id).first()"
+    ],
+    "query_evidence": [
+      ".on_conflict_do_update("
+    ],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/users/me/preferences",
+    "handler": "get_preferences",
+    "source": "backend/app/api/v1/preferences.py:17",
+    "response_model": "UserPreferencesResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user",
+      "get_db"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [
+      {
+        "status_code": "404",
+        "detail": "'Preferences not found'"
+      }
+    ],
+    "ownership_evidence": [
+      "record = db.query(UserPreferences).filter(UserPreferences.user_id == current_user.id).first()"
+    ],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v1/users/me/preferences",
+    "handler": "upsert_preferences",
+    "source": "backend/app/api/v1/preferences.py:28",
+    "response_model": "UserPreferencesResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "data",
+        "annotation": "UserPreferencesPayload",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user",
+      "get_db"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [],
+    "ownership_evidence": [
+      "values = {**data.model_dump(), \"user_id\": current_user.id}",
+      "record = db.query(UserPreferences).filter(UserPreferences.user_id == current_user.id).first()"
+    ],
+    "query_evidence": [
+      ".on_conflict_do_update("
+    ],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/users/me/profile",
+    "handler": "get_profile",
+    "source": "backend/app/api/v1/users.py:60",
+    "response_model": "UserResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v1/users/me/profile",
+    "handler": "update_profile",
+    "source": "backend/app/api/v1/users.py:67",
+    "response_model": "UserResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "data",
+        "annotation": "UserProfileUpdateRequest",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user",
+      "get_db"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [],
+    "ownership_evidence": [],
+    "query_evidence": [
+      "for field, value in data.model_dump(exclude_unset=True).items():"
+    ],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/users/me/profile/photo",
+    "handler": "upload_profile_photo",
+    "source": "backend/app/api/v1/users.py:80",
+    "response_model": "UserResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "photo",
+        "annotation": "Annotated[UploadFile, File()]",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user",
+      "get_db"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [
+      {
+        "status_code": "status.HTTP_422_UNPROCESSABLE_ENTITY",
+        "detail": "'Photo must be a JPEG or PNG image'"
+      },
+      {
+        "status_code": "status.HTTP_422_UNPROCESSABLE_ENTITY",
+        "detail": "'Photo must be smaller than 2 MB'"
+      }
+    ],
+    "ownership_evidence": [
+      "dest = _PHOTOS_DIR / f\"{current_user.id}.{ext}\"",
+      "current_user.profile_photo_path = f\"uploads/photos/{current_user.id}.{ext}\""
+    ],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/users/me/service-delivery",
+    "handler": "get_service_delivery",
+    "source": "backend/app/api/v1/service_delivery.py:61",
+    "response_model": "UserServiceDeliveryResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user",
+      "get_db"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [],
+    "ownership_evidence": [
+      ".filter(UserServiceDelivery.user_id == current_user.id)",
+      "return _all_false_defaults(current_user.id)"
+    ],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v1/users/me/service-delivery",
+    "handler": "upsert_service_delivery",
+    "source": "backend/app/api/v1/service_delivery.py:76",
+    "response_model": "UserServiceDeliveryResponse",
+    "status_expression": "200",
+    "parameters": [
+      {
+        "name": "data",
+        "annotation": "UserServiceDeliveryPayload",
+        "default": null
+      },
+      {
+        "name": "current_user",
+        "annotation": "Annotated[User, Depends(get_current_user)]",
+        "default": null
+      },
+      {
+        "name": "db",
+        "annotation": "Annotated[Session, Depends(get_db)]",
+        "default": null
+      }
+    ],
+    "dependencies": [
+      "get_current_user",
+      "get_db"
+    ],
+    "auth_dependency": "get_current_user",
+    "handler_errors": [],
+    "ownership_evidence": [
+      "values = {**data.model_dump(), \"user_id\": current_user.id}",
+      ".filter(UserServiceDelivery.user_id == current_user.id)"
+    ],
+    "query_evidence": [
+      ".on_conflict_do_update("
+    ],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  },
+  {
+    "method": "GET",
+    "path": "/health",
+    "handler": "health_check",
+    "source": "backend/app/main.py:62",
+    "response_model": "HealthResponse",
+    "status_expression": "200",
+    "parameters": [],
+    "dependencies": [],
+    "auth_dependency": "public",
+    "handler_errors": [],
+    "ownership_evidence": [],
+    "query_evidence": [],
+    "behavior": "implemented-source",
+    "runtime_verified": false,
+    "limits": "Handler-local errors only; inherited/dependency/service errors require the separate source review and runtime capture."
+  }
+]

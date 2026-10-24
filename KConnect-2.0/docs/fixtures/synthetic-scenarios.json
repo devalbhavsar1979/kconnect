@@ -1,0 +1,25 @@
+{
+  "status": "scenario definitions only; not seeded or executed",
+  "clock": "2026-10-19T06:00:00Z",
+  "timezone": "Asia/Calcutta",
+  "viewports": [{"width": 1440, "height": 900}, {"width": 390, "height": 844}],
+  "identities": [
+    {"id": "00000000-0000-4000-8000-000000000001", "email": "admin@example.invalid", "role": "SUPER_ADMIN", "active": true},
+    {"id": "00000000-0000-4000-8000-000000000002", "email": "expert-a@example.invalid", "role": "SME", "active": true},
+    {"id": "00000000-0000-4000-8000-000000000003", "email": "expert-b@example.invalid", "role": "FREELANCER", "active": true},
+    {"id": "00000000-0000-4000-8000-000000000004", "email": "disabled@example.invalid", "role": "SME", "active": false},
+    {"id": "00000000-0000-4000-8000-000000000005", "email": "legacy-admin@example.invalid", "role": "ADMIN", "active": true},
+    {"id": "00000000-0000-4000-8000-000000000006", "email": "vendor@example.invalid", "role": "VENDOR", "active": true}
+  ],
+  "datasets": [
+    {"id": "empty", "purpose": "Empty lists and absent one-per-user profile records"},
+    {"id": "ownership", "purpose": "Two users each own academic/experience/achievement records; cross-user requests denied"},
+    {"id": "search", "purpose": "OPEN/public, OPEN/restricted, DRAFT, CLOSED, ARCHIVED; overlapping tags/skills/delivery modes; mixed case, Unicode, commas, percent and underscore"},
+    {"id": "pagination", "purpose": "More than 20 admin records and 12 browsing records; tied dates; verify boundaries and totals"},
+    {"id": "dates", "purpose": "Deadline yesterday/today/+3/+4 days/null; event +7/+30/+90 days and outside ranges"},
+    {"id": "fees", "purpose": "Null, zero and fractional fee; verify JSON numeric types and null-last sorting"},
+    {"id": "files", "purpose": "Synthetic non-personal JPEG/PNG/PDF/DOCX at size boundaries, attachment counts 0/4/5, file replace/clear"},
+    {"id": "legacy-applications", "purpose": "Existing historical applications despite placeholder submit endpoint; verify applied tab and dashboard totals"}
+  ],
+  "do_not": ["Seed a production database", "Use real user data", "Treat proposed fixtures as observed behavior", "Expose persistent credentials in fixture files"]
+}

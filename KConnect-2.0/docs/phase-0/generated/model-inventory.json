@@ -1,0 +1,1916 @@
+[
+  {
+    "class": "AcademicDetail",
+    "bases": [
+      "Base"
+    ],
+    "source": "backend/app/models/academic.py:11",
+    "table": "academic_details",
+    "fields": [
+      {
+        "name": "__tablename__",
+        "annotation": null,
+        "value": "'academic_details'"
+      },
+      {
+        "name": "id",
+        "annotation": "Mapped[UUID]",
+        "value": "mapped_column(PG_UUID(as_uuid=True), primary_key=True, default=uuid4)"
+      },
+      {
+        "name": "user_id",
+        "annotation": "Mapped[UUID]",
+        "value": "mapped_column(PG_UUID(as_uuid=True), ForeignKey('users.id', ondelete='CASCADE'), nullable=False, index=True)"
+      },
+      {
+        "name": "school",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(200), nullable=False)"
+      },
+      {
+        "name": "degree",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(200), nullable=False)"
+      },
+      {
+        "name": "field_of_study",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(200), nullable=True)"
+      },
+      {
+        "name": "end_month",
+        "annotation": "Mapped[int | None]",
+        "value": "mapped_column(Integer, nullable=True)"
+      },
+      {
+        "name": "end_year",
+        "annotation": "Mapped[int | None]",
+        "value": "mapped_column(Integer, nullable=True)"
+      },
+      {
+        "name": "grade",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(50), nullable=True)"
+      },
+      {
+        "name": "description",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(Text, nullable=True)"
+      },
+      {
+        "name": "created_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), server_default=func.now())"
+      },
+      {
+        "name": "updated_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "Achievement",
+    "bases": [
+      "Base"
+    ],
+    "source": "backend/app/models/achievement.py:12",
+    "table": "achievements",
+    "fields": [
+      {
+        "name": "__tablename__",
+        "annotation": null,
+        "value": "'achievements'"
+      },
+      {
+        "name": "id",
+        "annotation": "Mapped[UUID]",
+        "value": "mapped_column(PG_UUID(as_uuid=True), primary_key=True, default=uuid4)"
+      },
+      {
+        "name": "user_id",
+        "annotation": "Mapped[UUID]",
+        "value": "mapped_column(PG_UUID(as_uuid=True), ForeignKey('users.id', ondelete='CASCADE'), nullable=False, index=True)"
+      },
+      {
+        "name": "title",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(200), nullable=False)"
+      },
+      {
+        "name": "description",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(Text, nullable=False)"
+      },
+      {
+        "name": "file_path",
+        "annotation": "Mapped[Optional[str]]",
+        "value": "mapped_column(String(500), nullable=True)"
+      },
+      {
+        "name": "file_name",
+        "annotation": "Mapped[Optional[str]]",
+        "value": "mapped_column(String(200), nullable=True)"
+      },
+      {
+        "name": "created_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), server_default=func.now())"
+      },
+      {
+        "name": "updated_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "ApplicationStatus",
+    "bases": [
+      "str",
+      "PyEnum"
+    ],
+    "source": "backend/app/models/application.py:12",
+    "table": null,
+    "fields": [
+      {
+        "name": "APPLIED",
+        "annotation": null,
+        "value": "'APPLIED'"
+      },
+      {
+        "name": "UNDER_REVIEW",
+        "annotation": null,
+        "value": "'UNDER_REVIEW'"
+      },
+      {
+        "name": "SHORTLISTED",
+        "annotation": null,
+        "value": "'SHORTLISTED'"
+      },
+      {
+        "name": "REJECTED",
+        "annotation": null,
+        "value": "'REJECTED'"
+      },
+      {
+        "name": "SELECTED",
+        "annotation": null,
+        "value": "'SELECTED'"
+      },
+      {
+        "name": "WITHDRAWN",
+        "annotation": null,
+        "value": "'WITHDRAWN'"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "Application",
+    "bases": [
+      "Base"
+    ],
+    "source": "backend/app/models/application.py:21",
+    "table": "applications",
+    "fields": [
+      {
+        "name": "__tablename__",
+        "annotation": null,
+        "value": "'applications'"
+      },
+      {
+        "name": "__table_args__",
+        "annotation": null,
+        "value": "(UniqueConstraint('opportunity_id', 'applicant_id', name='uq_application_opportunity_applicant'),)"
+      },
+      {
+        "name": "id",
+        "annotation": "Mapped[uuid.UUID]",
+        "value": "mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)"
+      },
+      {
+        "name": "opportunity_id",
+        "annotation": "Mapped[uuid.UUID]",
+        "value": "mapped_column(UUID(as_uuid=True), ForeignKey('opportunities.id'), nullable=False, index=True)"
+      },
+      {
+        "name": "applicant_id",
+        "annotation": "Mapped[uuid.UUID]",
+        "value": "mapped_column(UUID(as_uuid=True), ForeignKey('users.id'), nullable=False, index=True)"
+      },
+      {
+        "name": "status",
+        "annotation": "Mapped[ApplicationStatus]",
+        "value": "mapped_column(Enum(ApplicationStatus, name='applicationstatus'), nullable=False, default=ApplicationStatus.APPLIED)"
+      },
+      {
+        "name": "cover_note",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(Text, nullable=True)"
+      },
+      {
+        "name": "applied_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)"
+      },
+      {
+        "name": "updated_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=lambda: datetime.now(timezone.utc), nullable=False)"
+      },
+      {
+        "name": "opportunity",
+        "annotation": "Mapped['Opportunity']",
+        "value": "relationship('Opportunity', back_populates='applications')"
+      },
+      {
+        "name": "applicant",
+        "annotation": "Mapped['User']",
+        "value": "relationship('User', back_populates='applications')"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "Category",
+    "bases": [
+      "Base"
+    ],
+    "source": "backend/app/models/category.py:11",
+    "table": "categories",
+    "fields": [
+      {
+        "name": "__tablename__",
+        "annotation": null,
+        "value": "'categories'"
+      },
+      {
+        "name": "id",
+        "annotation": "Mapped[uuid.UUID]",
+        "value": "mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)"
+      },
+      {
+        "name": "name",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(100), unique=True, nullable=False)"
+      },
+      {
+        "name": "description",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(Text, nullable=True)"
+      },
+      {
+        "name": "is_active",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=True)"
+      },
+      {
+        "name": "created_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)"
+      },
+      {
+        "name": "updated_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=lambda: datetime.now(timezone.utc), nullable=False)"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "LocationType",
+    "bases": [
+      "str",
+      "PyEnum"
+    ],
+    "source": "backend/app/models/experience.py:13",
+    "table": null,
+    "fields": [
+      {
+        "name": "ONSITE",
+        "annotation": null,
+        "value": "'ONSITE'"
+      },
+      {
+        "name": "HYBRID",
+        "annotation": null,
+        "value": "'HYBRID'"
+      },
+      {
+        "name": "REMOTE",
+        "annotation": null,
+        "value": "'REMOTE'"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "EmploymentType",
+    "bases": [
+      "str",
+      "PyEnum"
+    ],
+    "source": "backend/app/models/experience.py:19",
+    "table": null,
+    "fields": [
+      {
+        "name": "FULL_TIME",
+        "annotation": null,
+        "value": "'FULL_TIME'"
+      },
+      {
+        "name": "PART_TIME",
+        "annotation": null,
+        "value": "'PART_TIME'"
+      },
+      {
+        "name": "FREELANCE",
+        "annotation": null,
+        "value": "'FREELANCE'"
+      },
+      {
+        "name": "SELF_EMPLOYED",
+        "annotation": null,
+        "value": "'SELF_EMPLOYED'"
+      },
+      {
+        "name": "INTERNSHIP",
+        "annotation": null,
+        "value": "'INTERNSHIP'"
+      },
+      {
+        "name": "APPRENTICESHIP",
+        "annotation": null,
+        "value": "'APPRENTICESHIP'"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "ExperienceEntry",
+    "bases": [
+      "Base"
+    ],
+    "source": "backend/app/models/experience.py:28",
+    "table": "experience_entries",
+    "fields": [
+      {
+        "name": "__tablename__",
+        "annotation": null,
+        "value": "'experience_entries'"
+      },
+      {
+        "name": "id",
+        "annotation": "Mapped[UUID]",
+        "value": "mapped_column(PG_UUID(as_uuid=True), primary_key=True, default=uuid4)"
+      },
+      {
+        "name": "user_id",
+        "annotation": "Mapped[UUID]",
+        "value": "mapped_column(PG_UUID(as_uuid=True), ForeignKey('users.id', ondelete='CASCADE'), nullable=False, index=True)"
+      },
+      {
+        "name": "job_title",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(200), nullable=False)"
+      },
+      {
+        "name": "organization",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(200), nullable=False)"
+      },
+      {
+        "name": "location",
+        "annotation": "Mapped[Optional[str]]",
+        "value": "mapped_column(String(200), nullable=True)"
+      },
+      {
+        "name": "location_type",
+        "annotation": "Mapped[Optional[LocationType]]",
+        "value": "mapped_column(Enum(LocationType, name='locationtype', create_type=False), nullable=True)"
+      },
+      {
+        "name": "employment_type",
+        "annotation": "Mapped[Optional[EmploymentType]]",
+        "value": "mapped_column(Enum(EmploymentType, name='employmenttype', create_type=False), nullable=True)"
+      },
+      {
+        "name": "is_current",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "start_month",
+        "annotation": "Mapped[int]",
+        "value": "mapped_column(Integer, nullable=False)"
+      },
+      {
+        "name": "start_year",
+        "annotation": "Mapped[int]",
+        "value": "mapped_column(Integer, nullable=False)"
+      },
+      {
+        "name": "end_month",
+        "annotation": "Mapped[Optional[int]]",
+        "value": "mapped_column(Integer, nullable=True)"
+      },
+      {
+        "name": "end_year",
+        "annotation": "Mapped[Optional[int]]",
+        "value": "mapped_column(Integer, nullable=True)"
+      },
+      {
+        "name": "highlights",
+        "annotation": "Mapped[Optional[str]]",
+        "value": "mapped_column(Text, nullable=True)"
+      },
+      {
+        "name": "skills",
+        "annotation": "Mapped[Optional[list[str]]]",
+        "value": "mapped_column(ARRAY(String(100)), nullable=True)"
+      },
+      {
+        "name": "created_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), server_default=func.now())"
+      },
+      {
+        "name": "updated_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "UserExpertise",
+    "bases": [
+      "Base"
+    ],
+    "source": "backend/app/models/expertise.py:19",
+    "table": "user_expertise",
+    "fields": [
+      {
+        "name": "__tablename__",
+        "annotation": null,
+        "value": "'user_expertise'"
+      },
+      {
+        "name": "id",
+        "annotation": "Mapped[UUID]",
+        "value": "mapped_column(PG_UUID(as_uuid=True), primary_key=True, default=uuid4)"
+      },
+      {
+        "name": "user_id",
+        "annotation": "Mapped[UUID]",
+        "value": "mapped_column(PG_UUID(as_uuid=True), ForeignKey('users.id', ondelete='CASCADE'), nullable=False, unique=True, index=True)"
+      },
+      {
+        "name": "total_experience",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(100), nullable=False)"
+      },
+      {
+        "name": "teaching_experience",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(100), nullable=False)"
+      },
+      {
+        "name": "corporate_training",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(100), nullable=False)"
+      },
+      {
+        "name": "online_training",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(100), nullable=False)"
+      },
+      {
+        "name": "classroom_training",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(100), nullable=False)"
+      },
+      {
+        "name": "primary_expertise",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(200), nullable=False)"
+      },
+      {
+        "name": "secondary_expertise",
+        "annotation": "Mapped[Optional[str]]",
+        "value": "mapped_column(String(200), nullable=True)"
+      },
+      {
+        "name": "audience_levels",
+        "annotation": "Mapped[list[str]]",
+        "value": "mapped_column(ARRAY(String(50)), nullable=False, default=list)"
+      },
+      {
+        "name": "created_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), server_default=func.now())"
+      },
+      {
+        "name": "updated_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "OpportunityType",
+    "bases": [
+      "str",
+      "PyEnum"
+    ],
+    "source": "backend/app/models/opportunity.py:15",
+    "table": null,
+    "fields": [
+      {
+        "name": "LECTURE",
+        "annotation": null,
+        "value": "'LECTURE'"
+      },
+      {
+        "name": "CONTENT_COURSE_DEVELOPMENT",
+        "annotation": null,
+        "value": "'CONTENT_COURSE_DEVELOPMENT'"
+      },
+      {
+        "name": "LANGUAGE_MEDIA",
+        "annotation": null,
+        "value": "'LANGUAGE_MEDIA'"
+      },
+      {
+        "name": "LEARNING_SUPPORT_EVALUATION",
+        "annotation": null,
+        "value": "'LEARNING_SUPPORT_EVALUATION'"
+      },
+      {
+        "name": "CONTENT_ELEARNING",
+        "annotation": null,
+        "value": "'CONTENT_ELEARNING'"
+      },
+      {
+        "name": "EDITING_REVIEW",
+        "annotation": null,
+        "value": "'EDITING_REVIEW'"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "SessionStructureType",
+    "bases": [
+      "str",
+      "PyEnum"
+    ],
+    "source": "backend/app/models/opportunity.py:24",
+    "table": null,
+    "fields": [
+      {
+        "name": "SINGLE_SESSION",
+        "annotation": null,
+        "value": "'SINGLE_SESSION'"
+      },
+      {
+        "name": "MULTIPLE_SESSIONS",
+        "annotation": null,
+        "value": "'MULTIPLE_SESSIONS'"
+      },
+      {
+        "name": "ONGOING_PROGRAM",
+        "annotation": null,
+        "value": "'ONGOING_PROGRAM'"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "VenueLocationType",
+    "bases": [
+      "str",
+      "PyEnum"
+    ],
+    "source": "backend/app/models/opportunity.py:30",
+    "table": null,
+    "fields": [
+      {
+        "name": "CORPORATE",
+        "annotation": null,
+        "value": "'CORPORATE'"
+      },
+      {
+        "name": "INSTITUTE",
+        "annotation": null,
+        "value": "'INSTITUTE'"
+      },
+      {
+        "name": "UNIVERSITY",
+        "annotation": null,
+        "value": "'UNIVERSITY'"
+      },
+      {
+        "name": "ONLINE",
+        "annotation": null,
+        "value": "'ONLINE'"
+      },
+      {
+        "name": "OTHERS",
+        "annotation": null,
+        "value": "'OTHERS'"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "ExpertiseLevelType",
+    "bases": [
+      "str",
+      "PyEnum"
+    ],
+    "source": "backend/app/models/opportunity.py:38",
+    "table": null,
+    "fields": [
+      {
+        "name": "FRESHER",
+        "annotation": null,
+        "value": "'FRESHER'"
+      },
+      {
+        "name": "EXPERIENCED",
+        "annotation": null,
+        "value": "'EXPERIENCED'"
+      },
+      {
+        "name": "EXPERT",
+        "annotation": null,
+        "value": "'EXPERT'"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "CompensationType",
+    "bases": [
+      "str",
+      "PyEnum"
+    ],
+    "source": "backend/app/models/opportunity.py:44",
+    "table": null,
+    "fields": [
+      {
+        "name": "PAID",
+        "annotation": null,
+        "value": "'PAID'"
+      },
+      {
+        "name": "VOLUNTARY",
+        "annotation": null,
+        "value": "'VOLUNTARY'"
+      },
+      {
+        "name": "NEGOTIABLE",
+        "annotation": null,
+        "value": "'NEGOTIABLE'"
+      },
+      {
+        "name": "TBD",
+        "annotation": null,
+        "value": "'TBD'"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "FeeStructureType",
+    "bases": [
+      "str",
+      "PyEnum"
+    ],
+    "source": "backend/app/models/opportunity.py:51",
+    "table": null,
+    "fields": [
+      {
+        "name": "PER_SESSION",
+        "annotation": null,
+        "value": "'PER_SESSION'"
+      },
+      {
+        "name": "PER_PROGRAM",
+        "annotation": null,
+        "value": "'PER_PROGRAM'"
+      },
+      {
+        "name": "PER_TASK",
+        "annotation": null,
+        "value": "'PER_TASK'"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "OpportunityVisibility",
+    "bases": [
+      "str",
+      "PyEnum"
+    ],
+    "source": "backend/app/models/opportunity.py:57",
+    "table": null,
+    "fields": [
+      {
+        "name": "VISIBLE_TO_ALL",
+        "annotation": null,
+        "value": "'VISIBLE_TO_ALL'"
+      },
+      {
+        "name": "SHORTLISTED_ONLY",
+        "annotation": null,
+        "value": "'SHORTLISTED_ONLY'"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "OpportunityStatus",
+    "bases": [
+      "str",
+      "PyEnum"
+    ],
+    "source": "backend/app/models/opportunity.py:62",
+    "table": null,
+    "fields": [
+      {
+        "name": "DRAFT",
+        "annotation": null,
+        "value": "'DRAFT'"
+      },
+      {
+        "name": "OPEN",
+        "annotation": null,
+        "value": "'OPEN'"
+      },
+      {
+        "name": "CLOSED",
+        "annotation": null,
+        "value": "'CLOSED'"
+      },
+      {
+        "name": "CANCELLED",
+        "annotation": null,
+        "value": "'CANCELLED'"
+      },
+      {
+        "name": "ARCHIVED",
+        "annotation": null,
+        "value": "'ARCHIVED'"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "Opportunity",
+    "bases": [
+      "Base"
+    ],
+    "source": "backend/app/models/opportunity.py:70",
+    "table": "opportunities",
+    "fields": [
+      {
+        "name": "__tablename__",
+        "annotation": null,
+        "value": "'opportunities'"
+      },
+      {
+        "name": "id",
+        "annotation": "Mapped[uuid.UUID]",
+        "value": "mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)"
+      },
+      {
+        "name": "title",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(512), nullable=False)"
+      },
+      {
+        "name": "opportunity_type",
+        "annotation": "Mapped[OpportunityType]",
+        "value": "mapped_column(Enum(OpportunityType, name='opportunitytype', create_type=False), nullable=False)"
+      },
+      {
+        "name": "category",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(200), nullable=False)"
+      },
+      {
+        "name": "sub_category",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(200), nullable=True)"
+      },
+      {
+        "name": "delivery_modes",
+        "annotation": "Mapped[list[str]]",
+        "value": "mapped_column(ARRAY(String), nullable=False, default=list)"
+      },
+      {
+        "name": "number_of_openings",
+        "annotation": "Mapped[int]",
+        "value": "mapped_column(Integer, nullable=False, default=1)"
+      },
+      {
+        "name": "session_structure",
+        "annotation": "Mapped[SessionStructureType]",
+        "value": "mapped_column(Enum(SessionStructureType, name='sessionstructuretype', create_type=False), nullable=False)"
+      },
+      {
+        "name": "total_duration",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(100), nullable=False)"
+      },
+      {
+        "name": "duration_per_session",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(100), nullable=False)"
+      },
+      {
+        "name": "organization_id",
+        "annotation": "Mapped[uuid.UUID | None]",
+        "value": "mapped_column(UUID(as_uuid=True), ForeignKey('organizations.id', ondelete='SET NULL'), nullable=True, index=True)"
+      },
+      {
+        "name": "short_description",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(500), nullable=False)"
+      },
+      {
+        "name": "detailed_description",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(Text, nullable=False)"
+      },
+      {
+        "name": "tags",
+        "annotation": "Mapped[list[str]]",
+        "value": "mapped_column(ARRAY(String), nullable=False, default=list)"
+      },
+      {
+        "name": "event_date",
+        "annotation": "Mapped[date]",
+        "value": "mapped_column(Date, nullable=False)"
+      },
+      {
+        "name": "start_time",
+        "annotation": "Mapped[time | None]",
+        "value": "mapped_column(Time, nullable=True)"
+      },
+      {
+        "name": "end_time",
+        "annotation": "Mapped[time | None]",
+        "value": "mapped_column(Time, nullable=True)"
+      },
+      {
+        "name": "venue_name",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(500), nullable=True)"
+      },
+      {
+        "name": "venue_location_type",
+        "annotation": "Mapped[VenueLocationType | None]",
+        "value": "mapped_column(Enum(VenueLocationType, name='venuelocationtype', create_type=False), nullable=True)"
+      },
+      {
+        "name": "venue_address",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(Text, nullable=True)"
+      },
+      {
+        "name": "target_audience",
+        "annotation": "Mapped[list[str]]",
+        "value": "mapped_column(ARRAY(String), nullable=False, default=list)"
+      },
+      {
+        "name": "skills_required",
+        "annotation": "Mapped[list[str]]",
+        "value": "mapped_column(ARRAY(String), nullable=False, default=list)"
+      },
+      {
+        "name": "minimum_experience",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(100), nullable=True)"
+      },
+      {
+        "name": "expertise_level",
+        "annotation": "Mapped[ExpertiseLevelType | None]",
+        "value": "mapped_column(Enum(ExpertiseLevelType, name='expertiseleveltype', create_type=False), nullable=True)"
+      },
+      {
+        "name": "additional_requirements",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(Text, nullable=True)"
+      },
+      {
+        "name": "language_of_delivery",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(100), nullable=False)"
+      },
+      {
+        "name": "preferred_location",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(200), nullable=True)"
+      },
+      {
+        "name": "gender_preference",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(50), nullable=True)"
+      },
+      {
+        "name": "candidate_preference",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(Text, nullable=True)"
+      },
+      {
+        "name": "notes_for_applicants",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(Text, nullable=True)"
+      },
+      {
+        "name": "application_deadline",
+        "annotation": "Mapped[date | None]",
+        "value": "mapped_column(Date, nullable=True)"
+      },
+      {
+        "name": "compensation_type",
+        "annotation": "Mapped[CompensationType]",
+        "value": "mapped_column(Enum(CompensationType, name='compensationtype', create_type=False), nullable=False, default=CompensationType.TBD)"
+      },
+      {
+        "name": "fee_structure",
+        "annotation": "Mapped[FeeStructureType | None]",
+        "value": "mapped_column(Enum(FeeStructureType, name='feestructuretype', create_type=False), nullable=True)"
+      },
+      {
+        "name": "fee_amount",
+        "annotation": "Mapped[float | None]",
+        "value": "mapped_column(Numeric(12, 2), nullable=True)"
+      },
+      {
+        "name": "payment_terms",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(200), nullable=True)"
+      },
+      {
+        "name": "travel_required",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "travel_reimbursement",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "other_benefits",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(Text, nullable=True)"
+      },
+      {
+        "name": "visibility",
+        "annotation": "Mapped[OpportunityVisibility]",
+        "value": "mapped_column(Enum(OpportunityVisibility, name='opportunityvisibility', create_type=False), nullable=False, default=OpportunityVisibility.VISIBLE_TO_ALL)"
+      },
+      {
+        "name": "status",
+        "annotation": "Mapped[OpportunityStatus]",
+        "value": "mapped_column(Enum(OpportunityStatus, name='opportunitystatus', create_type=False), nullable=False, default=OpportunityStatus.DRAFT)"
+      },
+      {
+        "name": "created_by",
+        "annotation": "Mapped[uuid.UUID]",
+        "value": "mapped_column(UUID(as_uuid=True), ForeignKey('users.id', ondelete='RESTRICT'), nullable=False)"
+      },
+      {
+        "name": "created_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)"
+      },
+      {
+        "name": "updated_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=lambda: datetime.now(timezone.utc), nullable=False)"
+      },
+      {
+        "name": "organization",
+        "annotation": "Mapped['Organization']",
+        "value": "relationship('Organization', back_populates='opportunities')"
+      },
+      {
+        "name": "creator",
+        "annotation": "Mapped['User']",
+        "value": "relationship('User', back_populates='opportunities')"
+      },
+      {
+        "name": "applications",
+        "annotation": "Mapped[list['Application']]",
+        "value": "relationship('Application', back_populates='opportunity', lazy='select')"
+      },
+      {
+        "name": "attachments",
+        "annotation": "Mapped[list['OpportunityAttachment']]",
+        "value": "relationship('OpportunityAttachment', back_populates='opportunity', cascade='all, delete-orphan', lazy='select')"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "OpportunityAttachment",
+    "bases": [
+      "Base"
+    ],
+    "source": "backend/app/models/opportunity_attachment.py:11",
+    "table": "opportunity_attachments",
+    "fields": [
+      {
+        "name": "__tablename__",
+        "annotation": null,
+        "value": "'opportunity_attachments'"
+      },
+      {
+        "name": "id",
+        "annotation": "Mapped[uuid.UUID]",
+        "value": "mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)"
+      },
+      {
+        "name": "opportunity_id",
+        "annotation": "Mapped[uuid.UUID]",
+        "value": "mapped_column(UUID(as_uuid=True), ForeignKey('opportunities.id', ondelete='CASCADE'), nullable=False, index=True)"
+      },
+      {
+        "name": "file_name",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(300), nullable=False)"
+      },
+      {
+        "name": "file_path",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(1024), nullable=False)"
+      },
+      {
+        "name": "file_size_bytes",
+        "annotation": "Mapped[int]",
+        "value": "mapped_column(Integer, nullable=False)"
+      },
+      {
+        "name": "uploaded_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)"
+      },
+      {
+        "name": "opportunity",
+        "annotation": "Mapped['Opportunity']",
+        "value": "relationship('Opportunity', back_populates='attachments')"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "OrganizationType",
+    "bases": [
+      "str",
+      "PyEnum"
+    ],
+    "source": "backend/app/models/organization.py:13",
+    "table": null,
+    "fields": [
+      {
+        "name": "PRIVATE_LIMITED",
+        "annotation": null,
+        "value": "'Private Limited Company'"
+      },
+      {
+        "name": "PUBLIC_LIMITED",
+        "annotation": null,
+        "value": "'Public Limited Company'"
+      },
+      {
+        "name": "LLP",
+        "annotation": null,
+        "value": "'LLP / Partnership Firm'"
+      },
+      {
+        "name": "SOLE_PROPRIETORSHIP",
+        "annotation": null,
+        "value": "'Sole Proprietorship'"
+      },
+      {
+        "name": "NGO",
+        "annotation": null,
+        "value": "'NGO / Non-Profit Trust'"
+      },
+      {
+        "name": "GOVERNMENT",
+        "annotation": null,
+        "value": "'Government / PSU'"
+      },
+      {
+        "name": "EDUCATIONAL",
+        "annotation": null,
+        "value": "'Educational Institution'"
+      },
+      {
+        "name": "STARTUP",
+        "annotation": null,
+        "value": "'Startup'"
+      },
+      {
+        "name": "OTHER",
+        "annotation": null,
+        "value": "'Other'"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "Organization",
+    "bases": [
+      "Base"
+    ],
+    "source": "backend/app/models/organization.py:47",
+    "table": "organizations",
+    "fields": [
+      {
+        "name": "__tablename__",
+        "annotation": null,
+        "value": "'organizations'"
+      },
+      {
+        "name": "id",
+        "annotation": "Mapped[uuid.UUID]",
+        "value": "mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)"
+      },
+      {
+        "name": "organization_name",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(255), nullable=False)"
+      },
+      {
+        "name": "industry",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(200), nullable=True, index=True)"
+      },
+      {
+        "name": "organization_type",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(100), nullable=True)"
+      },
+      {
+        "name": "website",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(512), nullable=True)"
+      },
+      {
+        "name": "email",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(255), nullable=True)"
+      },
+      {
+        "name": "mobile_number",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(20), nullable=True)"
+      },
+      {
+        "name": "city",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(100), nullable=True)"
+      },
+      {
+        "name": "state",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(100), nullable=True)"
+      },
+      {
+        "name": "country",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(100), nullable=True)"
+      },
+      {
+        "name": "address",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(Text, nullable=True)"
+      },
+      {
+        "name": "created_by",
+        "annotation": "Mapped[uuid.UUID]",
+        "value": "mapped_column(UUID(as_uuid=True), ForeignKey('users.id'), nullable=False, index=True)"
+      },
+      {
+        "name": "created_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)"
+      },
+      {
+        "name": "updated_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=lambda: datetime.now(timezone.utc), nullable=False)"
+      },
+      {
+        "name": "creator",
+        "annotation": "Mapped['User']",
+        "value": "relationship('User', back_populates='organizations')"
+      },
+      {
+        "name": "opportunities",
+        "annotation": "Mapped[list['Opportunity']]",
+        "value": "relationship('Opportunity', back_populates='organization', lazy='select')"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "UserPreferences",
+    "bases": [
+      "Base"
+    ],
+    "source": "backend/app/models/preferences.py:19",
+    "table": "user_preferences",
+    "fields": [
+      {
+        "name": "__tablename__",
+        "annotation": null,
+        "value": "'user_preferences'"
+      },
+      {
+        "name": "id",
+        "annotation": "Mapped[UUID]",
+        "value": "mapped_column(PG_UUID(as_uuid=True), primary_key=True, default=uuid4)"
+      },
+      {
+        "name": "user_id",
+        "annotation": "Mapped[UUID]",
+        "value": "mapped_column(PG_UUID(as_uuid=True), ForeignKey('users.id', ondelete='CASCADE'), nullable=False, unique=True, index=True)"
+      },
+      {
+        "name": "delivery_modes",
+        "annotation": "Mapped[list[str]]",
+        "value": "mapped_column(ARRAY(String(50)), nullable=False, default=list)"
+      },
+      {
+        "name": "geographic_preference",
+        "annotation": "Mapped[list[str]]",
+        "value": "mapped_column(ARRAY(String(50)), nullable=False, default=list)"
+      },
+      {
+        "name": "willing_to_travel",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "max_travel_distance",
+        "annotation": "Mapped[Optional[str]]",
+        "value": "mapped_column(String(20), nullable=True)"
+      },
+      {
+        "name": "travel_reimbursement",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "preferred_audience",
+        "annotation": "Mapped[list[str]]",
+        "value": "mapped_column(ARRAY(String(50)), nullable=False, default=list)"
+      },
+      {
+        "name": "services",
+        "annotation": "Mapped[list[str]]",
+        "value": "mapped_column(ARRAY(String(50)), nullable=False, default=list)"
+      },
+      {
+        "name": "training_topics",
+        "annotation": "Mapped[list[str]]",
+        "value": "mapped_column(ARRAY(String(200)), nullable=False, default=list)"
+      },
+      {
+        "name": "created_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), server_default=func.now())"
+      },
+      {
+        "name": "updated_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "RefreshToken",
+    "bases": [
+      "Base"
+    ],
+    "source": "backend/app/models/refresh_token.py:11",
+    "table": "refresh_tokens",
+    "fields": [
+      {
+        "name": "__tablename__",
+        "annotation": null,
+        "value": "'refresh_tokens'"
+      },
+      {
+        "name": "id",
+        "annotation": "Mapped[uuid.UUID]",
+        "value": "mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)"
+      },
+      {
+        "name": "user_id",
+        "annotation": "Mapped[uuid.UUID]",
+        "value": "mapped_column(UUID(as_uuid=True), ForeignKey('users.id', ondelete='CASCADE'), nullable=False, index=True)"
+      },
+      {
+        "name": "token_hash",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(64), nullable=False, index=True)"
+      },
+      {
+        "name": "expires_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), nullable=False)"
+      },
+      {
+        "name": "revoked",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "created_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)"
+      },
+      {
+        "name": "user",
+        "annotation": "Mapped['User']",
+        "value": "relationship('User', back_populates='refresh_tokens')"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "UserServiceDelivery",
+    "bases": [
+      "Base"
+    ],
+    "source": "backend/app/models/service_delivery.py:11",
+    "table": "user_service_delivery",
+    "fields": [
+      {
+        "name": "__tablename__",
+        "annotation": null,
+        "value": "'user_service_delivery'"
+      },
+      {
+        "name": "id",
+        "annotation": "Mapped[UUID]",
+        "value": "mapped_column(PG_UUID(as_uuid=True), primary_key=True, default=uuid4)"
+      },
+      {
+        "name": "user_id",
+        "annotation": "Mapped[UUID]",
+        "value": "mapped_column(PG_UUID(as_uuid=True), ForeignKey('users.id', ondelete='CASCADE'), nullable=False, unique=True, index=True)"
+      },
+      {
+        "name": "can_take_lecture",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "lecture_classroom",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "lecture_online",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "lecture_offline_recording",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "lecture_blended_flipped",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "lecture_hybrid_hyflex",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "lecture_hands_on_workshop",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "lecture_mentoring",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "can_create_content",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "content_creation",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "content_explainer",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "content_presentation",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "content_course_design",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "content_syllabus_design",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "content_reference_material",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "lang_translation",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "lang_transcription",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "lang_transcript_review",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "lang_proofreading",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "lang_voiceover",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "lang_localization",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "lang_subtitling",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "eval_case_study_creation",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "eval_case_study_review",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "eval_case_study_mentoring",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "eval_assignment_creation",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "eval_assignment_review",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "eval_assignment_mentoring",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "eval_qbank_creation",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "eval_qbank_review",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "eval_qpaper_creation",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "eval_qpaper_review",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "eval_qpaper_grading",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "created_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), server_default=func.now())"
+      },
+      {
+        "name": "updated_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "UserType",
+    "bases": [
+      "str",
+      "PyEnum"
+    ],
+    "source": "backend/app/models/user.py:12",
+    "table": null,
+    "fields": [
+      {
+        "name": "SUPER_ADMIN",
+        "annotation": null,
+        "value": "'SUPER_ADMIN'"
+      },
+      {
+        "name": "ADMIN",
+        "annotation": null,
+        "value": "'ADMIN'"
+      },
+      {
+        "name": "SME",
+        "annotation": null,
+        "value": "'SME'"
+      },
+      {
+        "name": "PROFESSIONAL_SERVICE_PROVIDER",
+        "annotation": null,
+        "value": "'PROFESSIONAL_SERVICE_PROVIDER'"
+      },
+      {
+        "name": "VENDOR",
+        "annotation": null,
+        "value": "'VENDOR'"
+      },
+      {
+        "name": "TRAINER",
+        "annotation": null,
+        "value": "'TRAINER'"
+      },
+      {
+        "name": "FREELANCER",
+        "annotation": null,
+        "value": "'FREELANCER'"
+      },
+      {
+        "name": "CONSULTANT",
+        "annotation": null,
+        "value": "'CONSULTANT'"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "ProfileStatus",
+    "bases": [
+      "str",
+      "PyEnum"
+    ],
+    "source": "backend/app/models/user.py:24",
+    "table": null,
+    "fields": [
+      {
+        "name": "INCOMPLETE",
+        "annotation": null,
+        "value": "'INCOMPLETE'"
+      },
+      {
+        "name": "COMPLETE",
+        "annotation": null,
+        "value": "'COMPLETE'"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "TitleType",
+    "bases": [
+      "str",
+      "PyEnum"
+    ],
+    "source": "backend/app/models/user.py:29",
+    "table": null,
+    "fields": [
+      {
+        "name": "MR",
+        "annotation": null,
+        "value": "'MR'"
+      },
+      {
+        "name": "MRS",
+        "annotation": null,
+        "value": "'MRS'"
+      },
+      {
+        "name": "MISS",
+        "annotation": null,
+        "value": "'MISS'"
+      },
+      {
+        "name": "DR",
+        "annotation": null,
+        "value": "'DR'"
+      },
+      {
+        "name": "PROF",
+        "annotation": null,
+        "value": "'PROF'"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "GenderType",
+    "bases": [
+      "str",
+      "PyEnum"
+    ],
+    "source": "backend/app/models/user.py:37",
+    "table": null,
+    "fields": [
+      {
+        "name": "MALE",
+        "annotation": null,
+        "value": "'MALE'"
+      },
+      {
+        "name": "FEMALE",
+        "annotation": null,
+        "value": "'FEMALE'"
+      },
+      {
+        "name": "OTHER",
+        "annotation": null,
+        "value": "'OTHER'"
+      },
+      {
+        "name": "PREFER_NOT_TO_SAY",
+        "annotation": null,
+        "value": "'PREFER_NOT_TO_SAY'"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "DesignationType",
+    "bases": [
+      "str",
+      "PyEnum"
+    ],
+    "source": "backend/app/models/user.py:44",
+    "table": null,
+    "fields": [
+      {
+        "name": "PROFESSOR",
+        "annotation": null,
+        "value": "'PROFESSOR'"
+      },
+      {
+        "name": "ASST_PROFESSOR",
+        "annotation": null,
+        "value": "'ASST_PROFESSOR'"
+      },
+      {
+        "name": "TRAINER",
+        "annotation": null,
+        "value": "'TRAINER'"
+      },
+      {
+        "name": "GUEST_FACULTY",
+        "annotation": null,
+        "value": "'GUEST_FACULTY'"
+      }
+    ],
+    "methods": []
+  },
+  {
+    "class": "User",
+    "bases": [
+      "Base"
+    ],
+    "source": "backend/app/models/user.py:51",
+    "table": "users",
+    "fields": [
+      {
+        "name": "__tablename__",
+        "annotation": null,
+        "value": "'users'"
+      },
+      {
+        "name": "id",
+        "annotation": "Mapped[uuid.UUID]",
+        "value": "mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)"
+      },
+      {
+        "name": "first_name",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(150), nullable=False)"
+      },
+      {
+        "name": "last_name",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(150), nullable=False)"
+      },
+      {
+        "name": "email",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(255), unique=True, nullable=False, index=True)"
+      },
+      {
+        "name": "mobile_number",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(20), nullable=True)"
+      },
+      {
+        "name": "password_hash",
+        "annotation": "Mapped[str]",
+        "value": "mapped_column(String(255), nullable=False)"
+      },
+      {
+        "name": "user_type",
+        "annotation": "Mapped[UserType]",
+        "value": "mapped_column(Enum(UserType, name='usertype'), nullable=False, default=UserType.FREELANCER)"
+      },
+      {
+        "name": "profile_status",
+        "annotation": "Mapped[ProfileStatus]",
+        "value": "mapped_column(Enum(ProfileStatus, name='profilestatus'), nullable=False, default=ProfileStatus.INCOMPLETE)"
+      },
+      {
+        "name": "is_active",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=True)"
+      },
+      {
+        "name": "is_verified",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "date_of_birth",
+        "annotation": "Mapped[date | None]",
+        "value": "mapped_column(Date(), nullable=True)"
+      },
+      {
+        "name": "cv_file_path",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(512), nullable=True)"
+      },
+      {
+        "name": "profile_photo_path",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(512), nullable=True)"
+      },
+      {
+        "name": "title",
+        "annotation": "Mapped[TitleType | None]",
+        "value": "mapped_column(Enum(TitleType, name='titletype'), nullable=True)"
+      },
+      {
+        "name": "gender",
+        "annotation": "Mapped[GenderType | None]",
+        "value": "mapped_column(Enum(GenderType, name='gendertype'), nullable=True)"
+      },
+      {
+        "name": "website",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(100), nullable=True)"
+      },
+      {
+        "name": "linkedin",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(100), nullable=True)"
+      },
+      {
+        "name": "company",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(100), nullable=True)"
+      },
+      {
+        "name": "designation",
+        "annotation": "Mapped[DesignationType | None]",
+        "value": "mapped_column(Enum(DesignationType, name='designationtype'), nullable=True)"
+      },
+      {
+        "name": "short_bio",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(Text(), nullable=True)"
+      },
+      {
+        "name": "address_flat",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(200), nullable=True)"
+      },
+      {
+        "name": "address_area",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(200), nullable=True)"
+      },
+      {
+        "name": "address_city",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(100), nullable=True)"
+      },
+      {
+        "name": "address_state",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(100), nullable=True)"
+      },
+      {
+        "name": "address_country",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(100), nullable=True)"
+      },
+      {
+        "name": "address_pincode",
+        "annotation": "Mapped[str | None]",
+        "value": "mapped_column(String(10), nullable=True)"
+      },
+      {
+        "name": "consent",
+        "annotation": "Mapped[bool]",
+        "value": "mapped_column(Boolean, nullable=False, default=False)"
+      },
+      {
+        "name": "created_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)"
+      },
+      {
+        "name": "updated_at",
+        "annotation": "Mapped[datetime]",
+        "value": "mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=lambda: datetime.now(timezone.utc), nullable=False)"
+      },
+      {
+        "name": "organizations",
+        "annotation": "Mapped[list['Organization']]",
+        "value": "relationship('Organization', back_populates='creator', lazy='select')"
+      },
+      {
+        "name": "refresh_tokens",
+        "annotation": "Mapped[list['RefreshToken']]",
+        "value": "relationship('RefreshToken', back_populates='user', cascade='all, delete-orphan', lazy='select')"
+      },
+      {
+        "name": "applications",
+        "annotation": "Mapped[list['Application']]",
+        "value": "relationship('Application', back_populates='applicant', lazy='select')"
+      },
+      {
+        "name": "opportunities",
+        "annotation": "Mapped[list['Opportunity']]",
+        "value": "relationship('Opportunity', back_populates='creator', lazy='select')"
+      }
+    ],
+    "methods": [
+      "def full_name(self) -> str:\n        return f\"{self.first_name} {self.last_name}\""
+    ]
+  }
+]

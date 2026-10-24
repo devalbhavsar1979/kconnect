@@ -1,0 +1,6 @@
+{
+  "key": "synthetic-legacy-test-key-never-deploy-00001",
+  "password": "SyntheticBcrypt123!",
+  "password_hash": "$2b$12$Iof1sRQXJDbIOzdR0bWSyeUmjndd3bxPP5IrsB1soQzji8Fis8.n2",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyMDAwMDAwMC0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDAwMDEiLCJ0eXBlIjoiYWNjZXNzIiwidXNlcl90eXBlIjoiU01FIiwiZXhwIjoyMjA4OTg4ODAwfQ.v-F67joSrfYd08bTiHBsZ5D4sG9q0U4AKdh2QTHvRFY"
+}

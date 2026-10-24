@@ -1,0 +1,8 @@
+{
+  "python": "3.11.9",
+  "declared_target_python": "3.12",
+  "scope": "Isolated app import and FastAPI OpenAPI generation; no database or HTTP workflow execution",
+  "operation_count": 59,
+  "source_inventory_match": true,
+  "runtime_version_difference": "Python 3.11 used for discovery; not a claim of Python 3.12 parity"
+}

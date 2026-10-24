@@ -1,0 +1,6 @@
+{
+  "environment": "staging",
+  "base_url": "https://STAGING_HOSTNAME_REQUIRED",
+  "private_root": "/home/ACCOUNT/kconnect-staging-private",
+  "public_root": "/home/ACCOUNT/STAGING_PUBLIC_ROOT"
+}

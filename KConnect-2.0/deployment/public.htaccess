@@ -1,0 +1,20 @@
+Options -Indexes -MultiViews
+DirectoryIndex index.php
+RewriteEngine On
+RewriteCond %{HTTP:Authorization} .
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+# Preserve file-based certificate renewal challenges.
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^\.well-known/acme-challenge/[A-Za-z0-9_-]+$ - [L]
+# Never expose dotfiles, other PHP scripts, private trees or backup extensions.
+RewriteRule (^|/)\. - [F,L]
+RewriteRule ^(?:vendor|storage|bootstrap|config|releases|shared)(?:/|$) - [F,L,NC]
+RewriteRule \.(?:env|log|sql|bak|zip|gz|tar)$ - [F,L,NC]
+RewriteRule ^(?!index\.php$).*\.php(?:/|$) - [F,L,NC]
+# Only immutable, packaged frontend assets are directly served.
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^assets/ - [L]
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^workbox-[a-f0-9]+\.js$ - [L]
+RewriteRule ^index\.php$ - [L]
+RewriteRule ^ index.php [L]

@@ -1,0 +1,402 @@
+[
+  {
+    "path": "/",
+    "component": "Navigate",
+    "component_source": "react-router-dom.tsx",
+    "guard": "none",
+    "classification": "redirect",
+    "source": "frontend/src/routes/index.tsx:38",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/login",
+    "component": "LoginPage",
+    "component_source": "frontend/src/features/auth/LoginPage.tsx",
+    "guard": "PublicRoute",
+    "classification": "implemented-source",
+    "source": "frontend/src/routes/index.tsx:46",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/register",
+    "component": "RegisterPage",
+    "component_source": "frontend/src/features/auth/RegisterPage.tsx",
+    "guard": "PublicRoute",
+    "classification": "implemented-source",
+    "source": "frontend/src/routes/index.tsx:47",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/admin",
+    "component": "Navigate",
+    "component_source": "react-router-dom.tsx",
+    "guard": "SUPER_ADMIN",
+    "classification": "redirect",
+    "source": "frontend/src/routes/index.tsx:58",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/admin/dashboard",
+    "component": "AdminDashboardPage",
+    "component_source": "frontend/src/features/admin/pages/AdminDashboardPage.tsx",
+    "guard": "SUPER_ADMIN",
+    "classification": "implemented-source",
+    "source": "frontend/src/routes/index.tsx:59",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/admin/users",
+    "component": "UsersPage",
+    "component_source": "frontend/src/features/admin/pages/UsersPage.tsx",
+    "guard": "SUPER_ADMIN",
+    "classification": "implemented-source",
+    "source": "frontend/src/routes/index.tsx:60",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/admin/users/verification",
+    "component": "UsersPage",
+    "component_source": "frontend/src/features/admin/pages/UsersPage.tsx",
+    "guard": "SUPER_ADMIN",
+    "classification": "implemented-source",
+    "source": "frontend/src/routes/index.tsx:61",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/admin/opportunities",
+    "component": "AdminOpportunitiesPage",
+    "component_source": "frontend/src/features/admin/pages/OpportunitiesPage.tsx",
+    "guard": "SUPER_ADMIN",
+    "classification": "implemented-source",
+    "source": "frontend/src/routes/index.tsx:62",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/admin/opportunities/new",
+    "component": "CreateOpportunityPage",
+    "component_source": "frontend/src/features/admin/pages/CreateOpportunityPage.tsx",
+    "guard": "SUPER_ADMIN",
+    "classification": "implemented-source",
+    "source": "frontend/src/routes/index.tsx:63",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/admin/opportunities/:id/edit",
+    "component": "CreateOpportunityPage",
+    "component_source": "frontend/src/features/admin/pages/CreateOpportunityPage.tsx",
+    "guard": "SUPER_ADMIN",
+    "classification": "implemented-source",
+    "source": "frontend/src/routes/index.tsx:64",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/admin/applications",
+    "component": "ApplicationsPage",
+    "component_source": "frontend/src/features/admin/pages/ApplicationsPage.tsx",
+    "guard": "SUPER_ADMIN",
+    "classification": "placeholder",
+    "source": "frontend/src/routes/index.tsx:65",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/admin/categories",
+    "component": "CategoriesPage",
+    "component_source": "frontend/src/features/admin/pages/CategoriesPage.tsx",
+    "guard": "SUPER_ADMIN",
+    "classification": "implemented-source",
+    "source": "frontend/src/routes/index.tsx:66",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/admin/organisations",
+    "component": "OrganisationsPage",
+    "component_source": "frontend/src/features/admin/pages/OrganisationsPage.tsx",
+    "guard": "SUPER_ADMIN",
+    "classification": "implemented-source",
+    "source": "frontend/src/routes/index.tsx:67",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/admin/organisations/new",
+    "component": "CreateOrganisationPage",
+    "component_source": "frontend/src/features/admin/pages/CreateOrganisationPage.tsx",
+    "guard": "SUPER_ADMIN",
+    "classification": "implemented-source",
+    "source": "frontend/src/routes/index.tsx:68",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/admin/organisations/:id/edit",
+    "component": "CreateOrganisationPage",
+    "component_source": "frontend/src/features/admin/pages/CreateOrganisationPage.tsx",
+    "guard": "SUPER_ADMIN",
+    "classification": "implemented-source",
+    "source": "frontend/src/routes/index.tsx:69",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/admin/sessions",
+    "component": "SessionsPage",
+    "component_source": "frontend/src/features/admin/pages/SessionsPage.tsx",
+    "guard": "SUPER_ADMIN",
+    "classification": "placeholder",
+    "source": "frontend/src/routes/index.tsx:70",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/admin/sessions/requests",
+    "component": "SessionsPage",
+    "component_source": "frontend/src/features/admin/pages/SessionsPage.tsx",
+    "guard": "SUPER_ADMIN",
+    "classification": "placeholder",
+    "source": "frontend/src/routes/index.tsx:71",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/admin/content/announcements",
+    "component": "ContentPage",
+    "component_source": "frontend/src/features/admin/pages/ContentPage.tsx",
+    "guard": "SUPER_ADMIN",
+    "classification": "placeholder",
+    "source": "frontend/src/routes/index.tsx:72",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/admin/content/banners",
+    "component": "ContentPage",
+    "component_source": "frontend/src/features/admin/pages/ContentPage.tsx",
+    "guard": "SUPER_ADMIN",
+    "classification": "placeholder",
+    "source": "frontend/src/routes/index.tsx:73",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/admin/communications/notifications",
+    "component": "CommunicationsPage",
+    "component_source": "frontend/src/features/admin/pages/CommunicationsPage.tsx",
+    "guard": "SUPER_ADMIN",
+    "classification": "placeholder",
+    "source": "frontend/src/routes/index.tsx:74",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/admin/communications/email",
+    "component": "CommunicationsPage",
+    "component_source": "frontend/src/features/admin/pages/CommunicationsPage.tsx",
+    "guard": "SUPER_ADMIN",
+    "classification": "placeholder",
+    "source": "frontend/src/routes/index.tsx:75",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/admin/analytics",
+    "component": "AnalyticsPage",
+    "component_source": "frontend/src/features/admin/pages/AnalyticsPage.tsx",
+    "guard": "SUPER_ADMIN",
+    "classification": "placeholder",
+    "source": "frontend/src/routes/index.tsx:76",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/admin/analytics/users",
+    "component": "AnalyticsPage",
+    "component_source": "frontend/src/features/admin/pages/AnalyticsPage.tsx",
+    "guard": "SUPER_ADMIN",
+    "classification": "placeholder",
+    "source": "frontend/src/routes/index.tsx:77",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/admin/analytics/opportunities",
+    "component": "AnalyticsPage",
+    "component_source": "frontend/src/features/admin/pages/AnalyticsPage.tsx",
+    "guard": "SUPER_ADMIN",
+    "classification": "placeholder",
+    "source": "frontend/src/routes/index.tsx:78",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/admin/settings/platform",
+    "component": "SettingsPage",
+    "component_source": "frontend/src/features/admin/pages/SettingsPage.tsx",
+    "guard": "SUPER_ADMIN",
+    "classification": "placeholder",
+    "source": "frontend/src/routes/index.tsx:79",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/admin/settings/admins",
+    "component": "SettingsPage",
+    "component_source": "frontend/src/features/admin/pages/SettingsPage.tsx",
+    "guard": "SUPER_ADMIN",
+    "classification": "placeholder",
+    "source": "frontend/src/routes/index.tsx:80",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/admin/support",
+    "component": "SupportPage",
+    "component_source": "frontend/src/features/admin/pages/SupportPage.tsx",
+    "guard": "SUPER_ADMIN",
+    "classification": "placeholder",
+    "source": "frontend/src/routes/index.tsx:81",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/dashboard",
+    "component": "DashboardPage",
+    "component_source": "frontend/src/features/dashboard/DashboardPage.tsx",
+    "guard": "ProtectedRoute",
+    "classification": "static-demo-with-auth-user",
+    "source": "frontend/src/routes/index.tsx:94",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/opportunities",
+    "component": "OpportunitiesPage",
+    "component_source": "frontend/src/features/opportunities/OpportunitiesPage.tsx",
+    "guard": "ProtectedRoute",
+    "classification": "implemented-source",
+    "source": "frontend/src/routes/index.tsx:95",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/profile",
+    "component": "MyProfilePage",
+    "component_source": "frontend/src/features/profile/MyProfilePage.tsx",
+    "guard": "ProtectedRoute",
+    "classification": "implemented-source",
+    "source": "frontend/src/routes/index.tsx:98",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/applications",
+    "component": "PlaceholderPage",
+    "component_source": "frontend/src/components/common/PlaceholderPage.tsx",
+    "guard": "ProtectedRoute",
+    "classification": "placeholder",
+    "source": "frontend/src/routes/index.tsx:102",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/sessions",
+    "component": "PlaceholderPage",
+    "component_source": "frontend/src/components/common/PlaceholderPage.tsx",
+    "guard": "ProtectedRoute",
+    "classification": "placeholder",
+    "source": "frontend/src/routes/index.tsx:112",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/availability",
+    "component": "PlaceholderPage",
+    "component_source": "frontend/src/components/common/PlaceholderPage.tsx",
+    "guard": "ProtectedRoute",
+    "classification": "placeholder",
+    "source": "frontend/src/routes/index.tsx:122",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/messages",
+    "component": "PlaceholderPage",
+    "component_source": "frontend/src/components/common/PlaceholderPage.tsx",
+    "guard": "ProtectedRoute",
+    "classification": "placeholder",
+    "source": "frontend/src/routes/index.tsx:132",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/resources",
+    "component": "PlaceholderPage",
+    "component_source": "frontend/src/components/common/PlaceholderPage.tsx",
+    "guard": "ProtectedRoute",
+    "classification": "placeholder",
+    "source": "frontend/src/routes/index.tsx:142",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/earnings",
+    "component": "PlaceholderPage",
+    "component_source": "frontend/src/components/common/PlaceholderPage.tsx",
+    "guard": "ProtectedRoute",
+    "classification": "placeholder",
+    "source": "frontend/src/routes/index.tsx:152",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/reviews",
+    "component": "PlaceholderPage",
+    "component_source": "frontend/src/components/common/PlaceholderPage.tsx",
+    "guard": "ProtectedRoute",
+    "classification": "placeholder",
+    "source": "frontend/src/routes/index.tsx:162",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/notifications",
+    "component": "PlaceholderPage",
+    "component_source": "frontend/src/components/common/PlaceholderPage.tsx",
+    "guard": "ProtectedRoute",
+    "classification": "placeholder",
+    "source": "frontend/src/routes/index.tsx:172",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/settings",
+    "component": "PlaceholderPage",
+    "component_source": "frontend/src/components/common/PlaceholderPage.tsx",
+    "guard": "ProtectedRoute",
+    "classification": "placeholder",
+    "source": "frontend/src/routes/index.tsx:182",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  },
+  {
+    "path": "/help",
+    "component": "PlaceholderPage",
+    "component_source": "frontend/src/components/common/PlaceholderPage.tsx",
+    "guard": "ProtectedRoute",
+    "classification": "placeholder",
+    "source": "frontend/src/routes/index.tsx:192",
+    "screenshots": "pending-runtime",
+    "interactions": "pending-runtime"
+  }
+]

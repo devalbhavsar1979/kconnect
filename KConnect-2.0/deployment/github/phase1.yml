@@ -1,0 +1,124 @@
+# Activation: copy to repository-root .github/workflows/kconnect-v2.yml.
+# Kept here to honor the requirement that this task only changes KConnect-2.0.
+name: KConnect 2 schema authentication and staging
+on:
+  pull_request:
+    paths: ['KConnect-2.0/**']
+  push:
+    branches: [main]
+    paths: ['KConnect-2.0/**']
+  workflow_dispatch:
+    inputs:
+      deploy_staging:
+        description: Deploy this tested artifact to the configured staging environment
+        type: boolean
+        default: false
+permissions:
+  contents: read
+defaults:
+  run:
+    working-directory: KConnect-2.0
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    services:
+      mariadb:
+        image: mariadb:11.4
+        env:
+          MARIADB_ROOT_PASSWORD: synthetic-ci-only
+          MARIADB_DATABASE: kconnect_phase2_test
+        ports: ['3306:3306']
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=10s --health-timeout=5s --health-retries=10
+    strategy:
+      matrix:
+        php: ['8.4', '8.5']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '${{ matrix.php }}'
+          extensions: mbstring, fileinfo, pdo_mysql, pdo_sqlite, curl, dom, xml, tokenizer
+          tools: composer:v2
+          coverage: none
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: KConnect-2.0/frontend/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install and build
+        run: |
+          mkdir -p backend/bootstrap/cache backend/storage/{logs,framework/cache/data,framework/sessions,framework/views} backend/resources/spa
+          composer install --working-dir=backend --no-interaction --prefer-dist
+          npm ci --prefix frontend
+          node tools/verify_frontend_parity.cjs
+          npm run build --prefix frontend
+          cp -R frontend/dist/. backend/resources/spa/
+      - name: Test
+        run: |
+          php backend/vendor/bin/phpunit -c backend/phpunit.xml
+          composer check-platform-reqs --working-dir=backend
+          python -m unittest discover -s tests -v
+      - name: MariaDB schema and authentication contracts
+        env:
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: '3306'
+          DB_DATABASE: kconnect_phase2_test
+          DB_USERNAME: root
+          DB_PASSWORD: synthetic-ci-only
+        run: php backend/vendor/bin/phpunit -c backend/phpunit.xml --filter AuthTest
+      - name: Package once on CLI-compatible runtime
+        if: matrix.php == '8.4'
+        run: |
+          composer install --working-dir=backend --no-dev --no-interaction --prefer-dist --optimize-autoloader
+          python tools/package_release.py --release "ci-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" --commit "$GITHUB_SHA"
+          php tools/rehearse_release.php artifacts/*.tar.gz
+      - uses: actions/upload-artifact@v4
+        if: matrix.php == '8.4'
+        with:
+          name: staging-release
+          path: KConnect-2.0/artifacts/*.tar.gz*
+          if-no-files-found: error
+  staging:
+    if: github.event_name == 'workflow_dispatch' && inputs.deploy_staging
+    needs: verify
+    runs-on: ubuntu-latest
+    environment: staging
+    concurrency:
+      group: kconnect-staging
+      cancel-in-progress: false
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          name: staging-release
+          path: KConnect-2.0/artifacts
+      - name: Configure pinned SSH identity
+        env:
+          SSH_KEY: '${{ secrets.SSH_PRIVATE_KEY }}'
+          KNOWN_HOSTS: '${{ secrets.SSH_KNOWN_HOSTS }}'
+        run: |
+          umask 077
+          mkdir -p "$RUNNER_TEMP/kconnect-ssh"
+          printf '%s\n' "$SSH_KEY" > "$RUNNER_TEMP/kconnect-ssh/key"
+          printf '%s\n' "$KNOWN_HOSTS" > "$RUNNER_TEMP/kconnect-ssh/known_hosts"
+      - name: Transfer and activate tested artifact
+        env:
+          DEPLOY_HOST: '${{ vars.DEPLOY_HOST }}'
+          DEPLOY_USER: '${{ vars.DEPLOY_USER }}'
+          DEPLOY_PORT: '${{ vars.DEPLOY_PORT }}'
+          STAGING_PRIVATE_ROOT: '${{ vars.STAGING_PRIVATE_ROOT }}'
+          REMOTE_PHP: '${{ vars.REMOTE_PHP }}'
+        run: |
+          export DEPLOY_KEY_FILE="$RUNNER_TEMP/kconnect-ssh/key"
+          export DEPLOY_KNOWN_HOSTS_FILE="$RUNNER_TEMP/kconnect-ssh/known_hosts"
+          python tools/stage_release.py artifacts/*.tar.gz

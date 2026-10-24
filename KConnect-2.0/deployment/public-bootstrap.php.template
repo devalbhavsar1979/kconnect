@@ -1,0 +1,21 @@
+<?php
+// Stable bootstrap: release selection is data, never a rewritten cached PHP file.
+$private = __PRIVATE_ROOT__;
+$maintenance = $private.'/maintenance.json';
+if (is_file($maintenance)) {
+    $gate = json_decode(file_get_contents($maintenance), true);
+    if (!hash_equals($gate['probe_hash'] ?? '', hash('sha256', $_SERVER['HTTP_X_DEPLOY_PROBE'] ?? ''))) {
+        http_response_code(503);
+        header('Content-Type: application/json');
+        header('Retry-After: 60');
+        header('Cache-Control: no-store');
+        exit('{"detail":"Temporarily unavailable"}');
+    }
+}
+$state = is_file($private.'/current.json') ? json_decode(file_get_contents($private.'/current.json'), true) : [];
+$id = $state['release'] ?? '';
+if (!preg_match('/\A[a-zA-Z0-9][a-zA-Z0-9_-]{0,79}\z/', $id)) { http_response_code(503); exit; }
+$entry = $private.'/releases/'.$id.'/backend/public/index.php';
+if (!is_file($entry)) { http_response_code(503); exit; }
+putenv('KCONNECT_SHARED_PATH='.$private.'/shared');
+require $entry;

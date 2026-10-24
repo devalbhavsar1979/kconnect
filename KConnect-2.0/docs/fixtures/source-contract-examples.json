@@ -1,0 +1,13 @@
+{
+  "evidence": "source-derived; not runtime captures",
+  "cases": [
+    {"method": "GET", "path": "/health", "auth": "public", "status": 200, "response": {"status": "healthy"}, "source": "backend/app/main.py"},
+    {"method": "GET", "path": "/api/v1/applications/", "auth": "active user", "status": 200, "response": {"message": "Application endpoints coming soon", "items": []}, "source": "backend/app/api/v1/applications.py"},
+    {"method": "POST", "path": "/api/v1/applications/", "auth": "active user", "status": 201, "response": {"message": "Application submission coming soon"}, "source": "backend/app/api/v1/applications.py"},
+    {"method": "GET", "path": "/api/v1/organizations/", "auth": "active user", "status": 200, "response": {"message": "Organization endpoints coming soon", "items": []}, "source": "backend/app/api/v1/organizations.py"},
+    {"method": "POST", "path": "/api/v1/organizations/", "auth": "VENDOR or ADMIN", "status": 201, "response": {"message": "Organization creation coming soon"}, "source": "backend/app/api/v1/organizations.py"},
+    {"method": "GET", "path": "/api/v1/users/", "auth": "ADMIN", "status": 200, "response": [], "source": "backend/app/api/v1/users.py"},
+    {"method": "POST", "path": "/api/v1/auth/register", "auth": "public", "input": {"first_name": "Fixture", "last_name": "User", "email": "fixture@example.invalid", "password": "Synthetic-only-123", "confirm_password": "Different-only-123"}, "content_type": "multipart/form-data", "status": 422, "response": {"detail": "Passwords do not match"}, "source": "backend/app/api/v1/auth.py"},
+    {"method": "POST", "path": "/api/v1/auth/register", "auth": "public", "input": {"first_name": "Fixture", "last_name": "User", "email": "fixture@example.invalid", "password": "short", "confirm_password": "short"}, "content_type": "multipart/form-data", "status": 422, "response": {"detail": "Password must be at least 8 characters"}, "source": "backend/app/api/v1/auth.py"}
+  ]
+}
